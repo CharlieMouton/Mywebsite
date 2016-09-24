@@ -1,0 +1,223 @@
+html {
+      min-width: 300px;
+}
+
+#navbar, #footer {
+    float:left;
+		padding:5px 0;
+		min-width:100%;
+    min-height: 50px;
+    background-color: #fafafa;
+    border-bottom: 3px solid #e4e4e4;
+    font-family: "open sans", sans-serif;
+    margin-bottom: 40px;
+	}
+
+#supp_timeline {
+  text-align: center;
+  height: 150px;
+  width: 80%;
+  max-width: 900px;
+  padding: 20px;
+  display: flex;
+  align-items: flex-start;
+  flex-direction: row;
+  justify-content: space-around;
+  padding-top: 70px;
+}
+
+#Headline_text {
+  text-align: center;
+  top: 63px;
+  max-width: 900px;
+
+}
+
+#Headline_text a {
+  width: 80% !important;
+}
+
+.container {
+  margin-left: auto;
+  margin-right: auto;
+}
+
+#content-body {
+  max-width: 550px;
+  margin: auto;
+}
+
+.icon, .arrow {
+  vertical-align: top;
+  border-style: solid;
+  padding: 5px;
+  border-top: 20px;
+}
+
+a {
+  text-decoration: none;
+}
+
+.icon {
+  width: 200px;
+  font-size: 18;
+  padding-top: 20px;
+  height: 225px;
+  box-shadow: 0px 0px 3px #ddd;
+}
+
+.nav-left {
+  width: 100px;
+  height: 150px;
+  font-size: 18px;
+  border: solid;
+  float: left;
+  text-align: center;
+}
+
+.nav-right {
+  width: 100px;
+  height: 150px;
+  font-size: 18px;
+  border: solid;
+  float: right;
+  text-align: center;
+}
+
+.icon:hover {
+  box-shadow: 0px 0px 4px #888;
+}
+
+.icon:active {
+  background-color: #eee;
+}
+
+.icon-circle {
+  border-radius: 50%;
+  height: 100px;
+  width: 100px;
+  margin: auto;
+}
+
+.arrow {
+  font-size: 36;
+  margin-top: 26px;
+}
+
+.container-fluid {
+    padding-right: 15px;
+    padding-left: 15px;
+    margin-right: auto;
+    margin-left: auto;
+}
+
+.navbar, .brand {
+    background-image: url('img/Trademark_OS.png');
+    width: 300px;
+    margin-left: 5px;
+    display: inline-block;
+    height: 45px;
+    background-size: contain;
+    background-position: center left;
+    background-repeat: no-repeat;
+}
+
+#header-title {
+    color: dimgray;
+    font-size: 24px !important;
+    font-weight: 300 !important;
+    margin-top: 10px;
+    padding-top: 10px;
+    padding-right: 10px;
+
+}
+#header-title {
+    float: right;
+    margin: 3px 0 0;
+}
+
+html, body, div, span, object, iframe, h1, h2, h3, h4, h5, h6, p, blockquote, pre, abbr, acronym, address, code, del, dfn, em, img, q, dl, dt, dd, ol, ul, li, fieldset, form, label, legend, table, caption, tbody, tfoot, thead, tr, th, td {
+    margin: 0;
+    padding: 0;
+    border: 0;
+    /*font-size: 100%;*/
+    font-family: 'Open Sans', sans-serif !important;
+    vertical-align: baseline;
+    outline: none;
+    color: dimgray;
+}
+
+@media screen and (max-width: 740px) {
+
+  /* withEnterprise */
+  #supp_timeline {
+    flex-direction: column;
+    height: auto;
+    align-items: center;
+  }
+
+  #Other_resources {
+    margin: 5px;
+    text-align: center;
+  }
+
+  #other_subtitle {
+    margin-bottom: 22px !important;
+  }
+
+  #Other_resources a {
+    margin:15px !important;
+  }
+
+  #title {
+    font-size: 24px !important;
+    line-height: 36px !important;
+    margin-top: 160px !important;
+  }
+
+  #Headline_text a {
+    width: 200px !important;
+  }
+
+  .icon {
+    margin-bottom: 15px;
+    margin-top: 15px;
+  }
+
+  .arrow {
+    transform: rotate(90deg);
+    font-size: 36 !important;
+  }
+
+  /* withoutEnterprise */
+  #noEnterpriseHeadline {
+    margin-bottom: 60px;
+    margin-top: 150px;
+
+  }
+
+  .optionDescrip {
+    width: 80%;
+    margin-left: 10%;
+    text-align: center;
+    float: none;
+  }
+
+  .woE-btn {
+    margin:30px !important;
+    margin-bottom: 90px !important;
+  }
+
+  .option {
+    margin-top: 30px;
+    width: 100%;
+    margin-left: 0;
+  }
+
+  .option img {
+    margin-right: 0 !important;
+    margin-bottom: 30px;
+    float: none !important;
+    text-align: center;
+  }
+}
