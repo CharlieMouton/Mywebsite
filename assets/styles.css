@@ -45,6 +45,7 @@ html {
 #content-body {
   max-width: 550px;
   margin: auto;
+  text-align: center;
 }
 
 .icon, .arrow {
@@ -70,18 +71,28 @@ a {
   width: 100px;
   height: 150px;
   font-size: 18px;
-  border: solid;
   float: left;
   text-align: center;
+  padding: 5px;
+  box-shadow: 0px 0px 3px #ddd;
+}
+
+.nav-left:hover {
+  box-shadow: 0px 0px 4px #888;
 }
 
 .nav-right {
   width: 100px;
   height: 150px;
   font-size: 18px;
-  border: solid;
   float: right;
   text-align: center;
+  padding: 5px;
+  box-shadow: 0px 0px 3px #ddd;
+}
+
+.nav-right:hover {
+  box-shadow: 0px 0px 4px #888;
 }
 
 .icon:hover {
@@ -90,6 +101,12 @@ a {
 
 .icon:active {
   background-color: #eee;
+}
+
+#text-body {
+  text-align: left;
+  margin-top: 20px;
+  text-indent: 50px;
 }
 
 .icon-circle {
