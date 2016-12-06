@@ -2,6 +2,15 @@ html {
       min-width: 300px;
 }
 
+h3 {
+  font-weight: normal;;
+  font-style: normal;
+}
+
+a:hover {
+  text-decoration: underline;
+}
+
 #navbar, #footer {
     float:left;
 		padding:5px 0;
@@ -94,6 +103,23 @@ a {
 }
 
 .nav-right:hover {
+  box-shadow: 0px 0px 4px #888;
+}
+
+.button_link {
+  width: 300px;
+  height: 40px;
+  font-size: 18px;
+  float: left;
+  text-align: center;
+  padding: 5px;
+  padding-top: 20px;
+  box-shadow: 0px 0px 3px #ddd;
+  margin-left: 200px;
+  margin-bottom: 150px;
+}
+
+.button_link {
   box-shadow: 0px 0px 4px #888;
 }
 
