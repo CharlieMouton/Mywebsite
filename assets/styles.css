@@ -183,9 +183,10 @@ a {
 
 .navbar, .brand {
     background-image: url('img/Trademark_OS.png');
-    width: 300px;
+    width: 60px;
     margin-left: 5px;
     display: inline-block;
+    float: left;
     height: 45px;
     background-size: contain;
     background-position: center left;
@@ -194,16 +195,22 @@ a {
 
 #header-title {
     color: dimgray;
-    font-size: 24px !important;
+    font-size: 18px !important;
     font-weight: 300 !important;
     margin-top: 10px;
     padding-top: 10px;
     padding-right: 10px;
-
 }
+
 #header-title {
+    float: left;
+    margin: 3px 0 0;
+}
+
+#header-email {
     float: right;
     margin: 3px 0 0;
+    margin-right: 10px;
 }
 
 html, body, div, span, object, iframe, h1, h2, h3, h4, h5, h6, p, blockquote, pre, abbr, acronym, address, code, del, dfn, em, img, q, dl, dt, dd, ol, ul, li, fieldset, form, label, legend, table, caption, tbody, tfoot, thead, tr, th, td {
