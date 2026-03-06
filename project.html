@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Project</title>
+  <link rel="stylesheet" href="assets/styles.css">
+  <link href="https://fonts.googleapis.com/css2?family=Jost:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet">
+</head>
+<body>
+  <div data-component="header"></div>
+  <main class="content-stack">
+    <div data-component="hero" data-icon="table.png" data-title="Project Title"></div>
+    <div data-component="title" data-text="Overview" data-svg="decorative/divider.svg"></div>
+    <div data-component="text">
+      <p>Project description and context.</p>
+    </div>
+    <div data-component="subtitle" data-text="Process"></div>
+    <div data-component="text">
+      <p>How the work was done.</p>
+    </div>
+    <div data-component="image" data-src="me.png" data-alt="Project image"></div>
+    <div data-component="gallery">
+      <img src="assets/img/me.png" alt="Gallery image 1">
+      <img src="assets/img/table.png" alt="Gallery image 2">
+    </div>
+  </main>
+  <script src="assets/components.js"></script>
+</body>
+</html>

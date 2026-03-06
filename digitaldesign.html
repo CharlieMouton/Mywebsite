@@ -2,23 +2,19 @@
 <head>
   <!-- <link rel="stylesheet" href="assets/rm-docs.css"> -->
   <link rel="stylesheet" href="assets/styles.css">
-  <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,700" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Caveat:wght@400;500;600;700&family=Open+Sans:wght@300;400;700&display=swap" rel="stylesheet">
 </head>
 <body>
   <div id="navbar">
     <div id="navbar-contents">
-      <a href="/" class="brand"></a>
-      <div id="header-title">
-        Charlie Mouton <br>
-        Interaction Designer
-      </div>
-      <div id="header-email">
-        <script language="JavaScript">
-          var username = "Charlie";
-          var hostname = "Moutons.org";
-          document.write("<a href='" + "mail" + "to:" + username + "@" + hostname + "'>" + '<img src="assets/img/email.png" height=50px;>' + "</a>");
-        </script>
-      </div>
+      <a href="/" id="header-name" aria-label="Charlie Mouton">
+        <img src="assets/img/signature.svg" alt="Charlie Mouton" width="237" height="40">
+      </a>
+      <nav id="header-nav">
+        <a href="/" class="header-link">Design Leader</a>
+        <span class="header-divider" aria-hidden="true"><img src="assets/img/HandwritingLineDivider.svg" alt=""></span>
+        <a href="/aboutme" class="header-link">First Designer</a>
+      </nav>
     </div>
   </div>
   <div id="content-body">

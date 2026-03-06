@@ -1,74 +1,21 @@
-<html>
+<!DOCTYPE html>
+<html lang="en">
 <head>
-  <!-- <link rel="stylesheet" href="assets/rm-docs.css"> -->
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>About Me</title>
   <link rel="stylesheet" href="assets/styles.css">
-  <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,700" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Jost:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet">
 </head>
 <body>
-  <div id="navbar">
-    <div id="navbar-contents">
-      <a href="/" class="brand"></a>
-      <div id="header-title">
-        Charlie Mouton <br>
-        Interaction Designer
-      </div>
-      <div id="header-email">
-        <script language="JavaScript">
-          var username = "Charlie";
-          var hostname = "Moutons.org";
-          document.write("<a href='" + "mail" + "to:" + username + "@" + hostname + "'>" + '<img src="assets/img/email.png" height=50px;>' + "</a>");
-        </script>
-      </div>
+  <div data-component="header"></div>
+  <main class="content-stack">
+    <div data-component="hero" data-icon="me.png" data-title="About Me"></div>
+    <div data-component="subtitle" data-text="Design Leader" data-svg="decorative/divider.svg"></div>
+    <div data-component="text">
+      <p>Your bio and story go here.</p>
     </div>
-  </div>
-  <div id="content-body">
-      <a href="/">
-        <div class="nav-left">
-          <img src="assets/img/Trademark_OS.png" height=50px; width=50px;>
-          <br> <br>
-          Return to Main Page
-        </div>
-      </a>
-
-      <a href="/firstdesignprocess">
-        <div class="nav-right">
-          <img src="assets/img/table.png" height=50px; width=50px;>
-          <br> <br>
-          My First Design Process
-        </div>
-      </a>
-
-      <div style="padding-top: 200px;">
-        <div> <img src="assets/img/me.png"> </div>
-        <br>
-        <h1> Designer with an Engineering Degree <h1>
-      </div>
-
-
-
-
-      <div id="text-body">
-        <h3> Engineering is Problem Solving </h3>
-
-        &emsp;&emsp;&emsp;I came to college thinking I would graduate an engineer, but instead will be graduating as a user-oriented interaction designer with a non-traditional engineering education. After being exposed to the user-oriented design process during the summer after my first year, I realized that this passion for tackling challenges was going to be best utilized as a designer, where I can think critically about the experience of the user and create experiences that are tailored to the user’s needs.
-
-
-        <h3> Not First World Problems, real World Problems </h3>
-
-        &emsp;&emsp;&emsp;As I continue to develop as a designer, I want to ensure that my knowledge and efforts are working towards a better world. I stumbled upon <a style="a:hover{text-decoration: underline;}" href="https://medium.com/startup-grind/im-done-pretending-sf-tech-is-visionary-9d0e91bfacfb#.y3q5w1qcc"> this medium article by Marco Marandiz</a> which discusses Silicon Valley’s vast level of expertise which is wasted on creating apps what solve first world problems. I don’t want to solve first world problems; I want to solve real World Problems. I want to reduce human suffering and inefficiency by creating interactions that are free of confusion and enjoyable to use.
-
-
-        <h3> Designing for Users and Non-Users Alike </h3>
-
-  	    &emsp;&emsp;&emsp;Even though most of my work is supported by discovered needs of users, it is also important to consider the non-users. It is the job of creators to ensure that the products we create are not just beneficial for our users, but for humanity. I aim to not lose sight of the bigger picture as I jump from project to project, and wrestle with ecological and moral considerations as I work.
-      </div>
-
-        <a href="#">
-          <div class="button_link">
-            Return to Top
-          </div>
-        </a>
-
-    </div>
+  </main>
+  <script src="assets/components.js"></script>
 </body>
 </html>
