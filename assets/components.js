@@ -33,6 +33,9 @@
         var slot = el.querySelector('[data-slot="content"]')
         if (slot && content) slot.innerHTML = content
         applyProps(el)
+        if (name === 'image') initImageEnhance(el)
+        if (name === 'header') initHeaderLinks(el)
+        if (name === 'footer') initFooterBtn(el)
       })
       .catch(function (err) {
         console.warn('[components.js]', err.message)
@@ -67,9 +70,13 @@
               imgSrc = 'assets/img/' + value
             }
             placeholder.src = imgSrc
-            if (props.alt !== undefined) placeholder.alt = props.alt
+            if (props.alt !== undefined) {
+              placeholder.alt = props.alt
+              placeholder.setAttribute('aria-label', props.alt)
+            }
           } else if (propName === 'alt') {
             placeholder.alt = value
+            placeholder.setAttribute('aria-label', value)
           }
         } else if (placeholder.hasAttribute('data-html')) {
           placeholder.innerHTML = value
@@ -88,6 +95,179 @@
         img.setAttribute('aria-hidden', 'true')
         svgContainer.appendChild(img)
       }
+    }
+  }
+
+  function initImageEnhance(container) {
+    var img = container.querySelector('.content-image img')
+    if (!img || !img.src) return
+
+    img.addEventListener('click', function (e) {
+      e.preventDefault()
+      var rect = img.getBoundingClientRect()
+
+      var overlay = document.createElement('div')
+      overlay.className = 'image-enhance-overlay'
+      overlay.setAttribute('role', 'dialog')
+      overlay.setAttribute('aria-modal', 'true')
+      overlay.setAttribute('aria-label', img.alt || 'Enlarged image view')
+
+      var enhanceImg = document.createElement('img')
+      enhanceImg.src = img.src
+      enhanceImg.alt = img.alt || ''
+      enhanceImg.draggable = false
+      enhanceImg.style.top = rect.top + 'px'
+      enhanceImg.style.left = rect.left + 'px'
+      enhanceImg.style.width = rect.width + 'px'
+      enhanceImg.style.height = rect.height + 'px'
+      overlay.appendChild(enhanceImg)
+
+      var finalTop, finalLeft, finalW, finalH
+      var baseScale = 1
+      var zoomScale = 1
+      var panX = 0
+      var panY = 0
+      var isZoomed = false
+      var lastX = 0
+      var lastY = 0
+      var lastTime = 0
+
+      function close() {
+        overlay.classList.remove('is-open')
+        enhanceImg.classList.remove('is-expanded', 'is-zoomed')
+        enhanceImg.style.top = rect.top + 'px'
+        enhanceImg.style.left = rect.left + 'px'
+        enhanceImg.style.width = rect.width + 'px'
+        enhanceImg.style.height = rect.height + 'px'
+        enhanceImg.style.transform = ''
+        setTimeout(function () {
+          overlay.remove()
+          document.body.style.overflow = ''
+          document.body.style.paddingRight = ''
+          overlay.removeEventListener('click', onOverlayClick)
+          enhanceImg.removeEventListener('click', onImageClick)
+          document.removeEventListener('keydown', onKey)
+          document.removeEventListener('mousemove', onMouseMove)
+        }, 400)
+      }
+
+      function runExpand() {
+        var vw = window.innerWidth
+        var vh = window.innerHeight
+        var padding = 40
+        var maxW = vw - padding
+        var maxH = vh - padding
+        var nw = enhanceImg.naturalWidth || rect.width
+        var nh = enhanceImg.naturalHeight || rect.height
+        baseScale = Math.min(maxW / nw, maxH / nh, 1)
+        zoomScale = Math.min(2, 1 / baseScale)
+        finalW = nw * baseScale
+        finalH = nh * baseScale
+        finalTop = (vh - finalH) / 2
+        finalLeft = (vw - finalW) / 2
+
+        overlay.classList.add('is-open')
+        enhanceImg.classList.add('is-expanded')
+        enhanceImg.style.top = finalTop + 'px'
+        enhanceImg.style.left = finalLeft + 'px'
+        enhanceImg.style.width = finalW + 'px'
+        enhanceImg.style.height = finalH + 'px'
+      }
+
+      function onOverlayClick(e) {
+        if (e.target === overlay) close()
+      }
+
+      function onImageClick(e) {
+        e.stopPropagation()
+        isZoomed = !isZoomed
+        if (isZoomed) {
+          enhanceImg.classList.add('is-zoomed')
+          panX = 0
+          panY = 0
+          lastTime = 0
+          enhanceImg.style.transform = 'scale(' + zoomScale + ')'
+        } else {
+          enhanceImg.classList.remove('is-zoomed')
+          enhanceImg.style.transform = ''
+        }
+      }
+
+      function onMouseMove(e) {
+        if (!isZoomed) return
+        var now = performance.now()
+        if (lastTime === 0) {
+          lastX = e.clientX
+          lastY = e.clientY
+          lastTime = now
+          return
+        }
+        var dt = (now - lastTime) / 16.67
+        if (dt < 0.5) dt = 0.5
+        var velocityX = (e.clientX - lastX) / dt
+        var velocityY = (e.clientY - lastY) / dt
+        lastX = e.clientX
+        lastY = e.clientY
+        lastTime = now
+        panX -= velocityX * 2
+        panY -= velocityY * 2
+        var vw = window.innerWidth
+        var vh = window.innerHeight
+        var zoomedW = finalW * zoomScale
+        var zoomedH = finalH * zoomScale
+        var scaleOffset = (zoomScale - 1) * 0.5
+        var leftBound = finalW * scaleOffset - finalLeft
+        var rightBound = vw - finalLeft - finalW - finalW * scaleOffset
+        var topBound = finalH * scaleOffset - finalTop
+        var bottomBound = vh - finalTop - finalH - finalH * scaleOffset
+        var panXMin = Math.min(leftBound, rightBound)
+        var panXMax = Math.max(leftBound, rightBound)
+        var panYMin = Math.min(topBound, bottomBound)
+        var panYMax = Math.max(topBound, bottomBound)
+        panX = Math.max(panXMin, Math.min(panXMax, panX))
+        panY = Math.max(panYMin, Math.min(panYMax, panY))
+        enhanceImg.style.transform = 'translate(' + panX + 'px, ' + panY + 'px) scale(' + zoomScale + ')'
+      }
+
+      overlay.addEventListener('click', onOverlayClick)
+      enhanceImg.addEventListener('click', onImageClick)
+      document.addEventListener('mousemove', onMouseMove)
+      var onKey = function (e) {
+        if (e.key === 'Escape') close()
+      }
+      document.addEventListener('keydown', onKey)
+
+      var scrollbarWidth = window.innerWidth - document.documentElement.clientWidth
+      if (scrollbarWidth > 0) {
+        document.body.style.paddingRight = scrollbarWidth + 'px'
+      }
+      document.body.style.overflow = 'hidden'
+      document.body.appendChild(overlay)
+
+      if (enhanceImg.complete && enhanceImg.naturalWidth) {
+        requestAnimationFrame(function () { requestAnimationFrame(runExpand) })
+      } else {
+        enhanceImg.onload = function () {
+          requestAnimationFrame(function () { requestAnimationFrame(runExpand) })
+        }
+      }
+    })
+  }
+
+  function initHeaderLinks(container) {
+    container.querySelectorAll('.header-link').forEach(function (link) {
+      link.addEventListener('mouseenter', function () {
+        link.classList.add('has-hovered')
+      }, { once: true })
+    })
+  }
+
+  function initFooterBtn(container) {
+    var btn = container.querySelector('.footer-resume-btn')
+    if (btn) {
+      btn.addEventListener('mouseenter', function () {
+        btn.classList.add('has-hovered')
+      }, { once: true })
     }
   }
 

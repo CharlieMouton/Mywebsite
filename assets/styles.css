@@ -8,6 +8,7 @@
   --grayish: #f4f4f4;
   /* Accents */
   --pink: #E6336E;
+  --pink-light: #FF6999;
   --teal: #00EEBB;
   --royal-blue: #222094;
   --eggplant: #4C1777;
@@ -21,6 +22,27 @@
 
 html {
   min-width: 300px;
+  overflow-x: hidden;
+}
+
+body {
+  overflow-x: hidden;
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+img {
+  max-width: 100%;
+  height: auto;
+}
+
+main.content-stack {
+  min-height: 100vh;
+  padding-bottom: 0px;
 }
 
 /* Typography - Jost */
@@ -29,7 +51,7 @@ h1 {
   font-weight: 600;
   font-size: 48px;
   line-height: 1;
-  letter-spacing: 0;
+  letter-spacing: .5px;
 }
 
 h2 {
@@ -37,7 +59,7 @@ h2 {
   font-weight: 400;
   font-size: 32px;
   line-height: 1;
-  letter-spacing: 0;
+  letter-spacing: .3px;
 }
 
 h3 {
@@ -85,25 +107,108 @@ h4 {
     padding: 5px 0;
     min-width: 100%;
     min-height: 50px;
-    background-color: var(--grayish);
-    border-bottom: 1px solid var(--gray-dark);
+    background-color: #fff;
+    box-shadow: 0 2px 6px 0 rgba(153, 153, 153, 0.2);
     font-family: "Jost", sans-serif;
     margin-bottom: 40px;
   }
 
 #footer {
-    float: left;
-    padding: 5px 0;
-    min-width: 100%;
-    min-height: 50px;
-    background-color: var(--grayish);
-    border-bottom: 2px solid var(--gray-lighter);
-    font-family: "Jost", sans-serif;
-    margin-bottom: 40px;
-  }
+  padding: 40px 0;
+  min-width: 100%;
+  background-color: var(--gray-darker);
+  font-family: "Jost", sans-serif;
+  color: #ffffff;
+}
+
+#footer-contents {
+  max-width: 100%;
+  margin: 0 auto;
+  padding: 0 24px;
+  text-align: center;
+}
+
+.footer-resume-btn {
+  display: inline-block;
+  font-size: 16px;
+  font-weight: 400;
+  color: #ffffff;
+  text-decoration: none;
+  padding: 16px 32px;
+  position: relative;
+}
+
+.footer-resume-btn:hover {
+  color: #ffffff;
+  text-decoration: none;
+}
+
+.footer-resume-btn::before {
+  content: '';
+  position: absolute;
+  inset: -4px;
+  background: url('img/buttonBorder.svg') no-repeat center;
+  background-size: 100% 100%;
+  clip-path: inset(0 100% 0 0);
+  pointer-events: none;
+}
+
+.footer-resume-btn:hover::before {
+  animation: footer-border-reveal 0.20s cubic-bezier(0.075, 0.82, 0.165, 1) forwards,
+             footer-btn-wiggle 0.2s ease-in-out 0.20s infinite;
+}
+
+.footer-resume-btn.has-hovered:not(:hover)::before {
+  animation: footer-border-hide 0.30s cubic-bezier(0.075, 0.82, 0.165, 1) forwards;
+}
+
+@keyframes footer-border-reveal {
+  from { clip-path: inset(0 100% 0 0); }
+  to { clip-path: inset(0 0 0 0); }
+}
+
+@keyframes footer-border-hide {
+  from { clip-path: inset(0 0 0 0); }
+  to { clip-path: inset(0 0 0 100%); }
+}
+
+@keyframes footer-btn-wiggle {
+  0%, 100% { transform: rotate(-0.5deg); }
+  50% { transform: rotate(0.5deg); }
+}
+
+.footer-resume-btn,
+.footer-resume-btn .footer-resume-btn-inner {
+  color: #ffffff !important;
+}
+
+.footer-resume-btn-inner {
+  position: relative;
+  z-index: 1;
+}
+
+.footer-divider {
+  margin: 20px auto;
+  display: flex;
+  justify-content: center;
+}
+
+.footer-divider img {
+  width: 60px;
+  height: 7px;
+  object-fit: contain;
+  filter: none;
+}
+
+.footer-credit {
+  font-size: 13px;
+  line-height: 18px;
+  color: var(--gray-light);
+  margin: 0;
+}
 
 #navbar-contents {
-  max-width: 1200px;
+  max-width: 100%;
   margin: 0 auto;
   padding: 12px 24px;
   display: flex;
@@ -130,11 +235,13 @@ h4 {
 }
 
 .header-link {
-  font-size: 13px;
+  font-size: 18px;
+  font-weight: 400;
   color: var(--gray-darker);
   text-decoration: none;
   position: relative;
   display: inline-block;
+  margin: 0 12px;
 }
 
 .header-link:hover {
@@ -146,17 +253,29 @@ h4 {
   position: absolute;
   left: 0;
   right: 0;
-  bottom: -4px;
+  bottom: -8px;
   height: 7px;
   background: url('img/HandwritingLine.svg') no-repeat left bottom;
   background-size: 100% 100%;
-  transform: scaleX(0);
-  transform-origin: left center;
-  transition: transform 0.35s ease-out;
+  clip-path: inset(0 100% 0 0);
 }
 
 .header-link:hover::after {
-  transform: scaleX(1);
+  animation: header-underline-reveal 0.20s cubic-bezier(0.075, 0.82, 0.165, 1) forwards;
+}
+
+.header-link.has-hovered:not(:hover)::after {
+  animation: header-underline-hide 0.30s cubic-bezier(0.075, 0.82, 0.165, 1) forwards;
+}
+
+@keyframes header-underline-reveal {
+  from { clip-path: inset(0 100% 0 0); }
+  to { clip-path: inset(0 0 0 0); }
+}
+
+@keyframes header-underline-hide {
+  from { clip-path: inset(0 0 0 0); }
+  to { clip-path: inset(0 0 0 100%); }
 }
 
 .header-divider {
@@ -408,42 +527,134 @@ html, body, div, span, object, iframe, h1, h2, h3, h4, h5, h6, p, blockquote, pr
   height: auto;
 }
 
-.content-title,
+.content-title {
+  width: 100vw;
+  margin: 20px calc(50% - 50vw);
+  box-sizing: border-box;
+}
+
 .content-subtitle {
-  margin: 32px 0 16px;
+  width: 100vw;
+  margin: 20px calc(50% - 50vw);
+  box-sizing: border-box;
 }
 
 .title-text {
-  font-size: 32px;
-  font-weight: 400;
-  margin: 0;
+  font-size: 48px;
+  font-weight: 600;
+  margin: 0 auto;
+  max-width: 600px;
+  color: var(--gray-darker);
 }
 
 .subtitle-text {
-  font-size: 24px;
+  font-size: 32px;
   font-weight: 400;
-  margin: 0;
+  margin: 0 auto;
+  max-width: 600px;
+  color: var(--gray-darker);
 }
 
 .content-text {
-  margin: 24px 0;
+  width: 100vw;
+  margin: 0 0 40px calc(50% - 50vw);
+  box-sizing: border-box;
   text-align: left;
 }
 
 .text-body {
+  font-family: 'Jost', sans-serif;
   font-size: 16px;
   font-weight: 400;
   line-height: 1.5;
+  max-width: 600px;
+  margin: 0 auto;
 }
 
 .content-image {
-  margin: 32px 0;
-  text-align: center;
+  width: 100vw;
+  margin: 20px 0 0 calc(50% - 50vw);
+  box-sizing: border-box;
 }
 
 .content-image img {
-  max-width: 100%;
+  display: block;
+  width: 100%;
   height: auto;
+  margin-bottom: 20px;
+  cursor: pointer;
+}
+
+.content-image .image-label {
+  font-family: 'Jost', sans-serif;
+  font-size: 13px;
+  font-weight: 400;
+  line-height: 18px;
+  margin: 0 0 20px;
+  color: var(--gray);
+}
+
+.content-image .image-label:empty {
+  display: none;
+}
+
+/* Image: 600px max on desktop for image+label */
+@media screen and (min-width: 769px) {
+  .content-image {
+    max-width: 600px;
+    margin: 20px auto 0;
+    width: 100%;
+  }
+
+  .content-image img {
+    max-width: 100%;
+  }
+}
+
+/* Image enhance/lightbox overlay */
+.image-enhance-overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 1000;
+  background: rgba(33, 33, 33, 0);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+  box-sizing: border-box;
+  cursor: pointer;
+  transition: background 0.35s ease-out;
+}
+
+.image-enhance-overlay.is-open {
+  background: rgba(33, 33, 33, 0.3);
+}
+
+.image-enhance-overlay img {
+  position: fixed;
+  object-fit: contain;
+  transform-origin: center center;
+  cursor: pointer;
+  pointer-events: none;
+  user-select: none;
+  -webkit-user-drag: none;
+  -moz-user-select: none;
+  -webkit-user-select: none;
+  -ms-user-select: none;
+  transition: top 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94),
+              left 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94),
+              width 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94),
+              height 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94),
+              transform 0.3s ease-out;
+}
+
+.image-enhance-overlay img.is-expanded {
+  pointer-events: auto;
+}
+
+.image-enhance-overlay img.is-zoomed {
+  cursor: move;
+  transition: none;
 }
 
 .content-gallery {
@@ -464,6 +675,10 @@ html, body, div, span, object, iframe, h1, h2, h3, h4, h5, h6, p, blockquote, pr
 
 /* Breakpoint 1: Mobile (max 480px) */
 @media screen and (max-width: 480px) {
+  #footer-contents {
+    padding: 0 20px;
+  }
+
   #navbar-contents {
     flex-direction: column;
     gap: 12px;
@@ -501,25 +716,36 @@ html, body, div, span, object, iframe, h1, h2, h3, h4, h5, h6, p, blockquote, pr
     font-size: 28px;
   }
 
-  .content-title,
+  .content-title {
+    margin: 20px 0;
+    padding: 0 20px;
+  }
+
   .content-subtitle {
-    margin: 24px 0 12px;
+    margin: 20px 0;
+    padding: 0 20px;
   }
 
   .title-text {
-    font-size: 24px;
+    font-size: 28px;
+    margin: 0;
+    max-width: none;
   }
 
   .subtitle-text {
     font-size: 20px;
+    margin: 0;
+    max-width: none;
   }
 
   .content-text {
-    margin: 16px 0;
+    margin: 0 0 40px calc(50% - 50vw);
+    padding: 0 20px;
   }
 
   .text-body {
     font-size: 15px;
+    margin: 0;
   }
 
   .hero-svg img,
@@ -529,7 +755,10 @@ html, body, div, span, object, iframe, h1, h2, h3, h4, h5, h6, p, blockquote, pr
     max-width: 80px;
   }
 
-  .content-image,
+  .content-image .image-label {
+    padding: 0 20px;
+  }
+
   .content-gallery {
     margin: 24px 0;
   }
@@ -566,6 +795,10 @@ html, body, div, span, object, iframe, h1, h2, h3, h4, h5, h6, p, blockquote, pr
 
 /* Breakpoint 2: Tablet (481px - 768px) */
 @media screen and (min-width: 481px) and (max-width: 768px) {
+  #footer-contents {
+    padding: 0 20px;
+  }
+
   #navbar-contents {
     padding: 12px 20px;
   }
@@ -584,11 +817,27 @@ html, body, div, span, object, iframe, h1, h2, h3, h4, h5, h6, p, blockquote, pr
   }
 
   .title-text {
-    font-size: 28px;
+    font-size: 36px;
+  }
+
+  .content-title {
+    padding: 0 20px;
+  }
+
+  .content-subtitle {
+    padding: 0 20px;
   }
 
   .subtitle-text {
     font-size: 22px;
+  }
+
+  .content-text {
+    padding: 0 20px;
+  }
+
+  .content-image .image-label {
+    padding: 0 20px;
   }
 
   .gallery-grid {
@@ -608,7 +857,13 @@ html, body, div, span, object, iframe, h1, h2, h3, h4, h5, h6, p, blockquote, pr
 
 /* Breakpoint 3: Small desktop (769px - 1024px) */
 @media screen and (min-width: 769px) and (max-width: 1024px) {
+  #footer-contents {
+    max-width: 600px;
+    padding: 0 24px;
+  }
+
   #navbar-contents {
+    max-width: 600px;
     padding: 12px 24px;
   }
 
@@ -628,7 +883,13 @@ html, body, div, span, object, iframe, h1, h2, h3, h4, h5, h6, p, blockquote, pr
 
 /* Breakpoint 4: Large desktop (1025px+) */
 @media screen and (min-width: 1025px) {
+  #footer-contents {
+    max-width: 600px;
+    padding: 0 32px;
+  }
+
   #navbar-contents {
+    max-width: 600px;
     padding: 12px 32px;
   }
 
