@@ -34,7 +34,10 @@
         if (slot && content) slot.innerHTML = content
         applyProps(el)
         if (name === 'image') initImageEnhance(el)
-        if (name === 'header') initHeaderLinks(el)
+        if (name === 'header') {
+          initHeaderLinks(el)
+          initMobileMenu(el)
+        }
         if (name === 'footer') initFooterBtn(el)
       })
       .catch(function (err) {
@@ -259,6 +262,45 @@
       link.addEventListener('mouseenter', function () {
         link.classList.add('has-hovered')
       }, { once: true })
+    })
+  }
+
+  function initMobileMenu(container) {
+    var hamburger = container.querySelector('.header-hamburger')
+    var overlay = container.querySelector('.header-mobile-overlay')
+    var closeBtn = container.querySelector('.header-mobile-close')
+    var mobileLinks = container.querySelectorAll('.header-mobile-link')
+
+    if (!hamburger || !overlay) return
+
+    function openMenu() {
+      overlay.classList.add('is-open')
+      hamburger.setAttribute('aria-expanded', 'true')
+      overlay.setAttribute('aria-hidden', 'false')
+      document.body.style.overflow = 'hidden'
+    }
+
+    function closeMenu() {
+      overlay.classList.remove('is-open')
+      hamburger.setAttribute('aria-expanded', 'false')
+      overlay.setAttribute('aria-hidden', 'true')
+      document.body.style.overflow = ''
+    }
+
+    hamburger.addEventListener('click', function () {
+      if (overlay.classList.contains('is-open')) {
+        closeMenu()
+      } else {
+        openMenu()
+      }
+    })
+
+    if (closeBtn) {
+      closeBtn.addEventListener('click', closeMenu)
+    }
+
+    mobileLinks.forEach(function (link) {
+      link.addEventListener('click', closeMenu)
     })
   }
 
