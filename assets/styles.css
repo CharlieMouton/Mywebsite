@@ -43,6 +43,7 @@ img {
 main.content-stack {
   min-height: 100vh;
   padding-bottom: 0px;
+  padding-top: 74px;
 }
 
 /* Typography - Jost */
@@ -50,7 +51,7 @@ h1 {
   font-family: 'Jost', sans-serif;
   font-weight: 600;
   font-size: 48px;
-  line-height: 1;
+  line-height: auto;
   letter-spacing: .5px;
 }
 
@@ -58,7 +59,7 @@ h2 {
   font-family: 'Jost', sans-serif;
   font-weight: 400;
   font-size: 32px;
-  line-height: 1;
+  line-height: auto;
   letter-spacing: .3px;
 }
 
@@ -66,7 +67,7 @@ h3 {
   font-family: 'Jost', sans-serif;
   font-weight: 400;
   font-size: 24px;
-  line-height: 1;
+  line-height: auto;
   letter-spacing: 0;
 }
 
@@ -74,7 +75,7 @@ h4 {
   font-family: 'Jost', sans-serif;
   font-weight: 600;
   font-size: 20px;
-  line-height: 1;
+  line-height: auto;
   letter-spacing: 0;
 }
 
@@ -82,7 +83,7 @@ h4 {
   font-family: 'Jost', sans-serif;
   font-weight: 400;
   font-size: 20px;
-  line-height: 1;
+  line-height: auto;
   letter-spacing: 0;
 }
 
@@ -114,6 +115,7 @@ h4 {
   }
 
 #footer {
+  margin-top: 80px;
   padding: 40px 0;
   min-width: 100%;
   background-color: var(--gray-darker);
@@ -208,9 +210,8 @@ h4 {
 }
 
 #navbar-contents {
-  max-width: 100%;
+  max-width: 700px;
   margin: 0 auto;
-  margin-left: 67px;
   padding: 12px 24px;
   display: flex;
   align-items: center;
@@ -283,6 +284,7 @@ h4 {
   display: inline-flex;
   align-items: center;
   line-height: 0;
+  height: 1px;
 }
 
 .header-divider img {
@@ -623,7 +625,7 @@ html, body, div, span, object, iframe, h1, h2, h3, h4, h5, h6, p, blockquote, pr
     font-family: 'Jost', sans-serif !important;
     vertical-align: baseline;
     outline: none;
-    color: var(--gray);
+    /* color: var(--gray); */
 }
 
 /* Component-based layout */
@@ -634,30 +636,48 @@ html, body, div, span, object, iframe, h1, h2, h3, h4, h5, h6, p, blockquote, pr
 }
 
 .hero {
-  text-align: center;
-  padding: 60px 0 40px;
+  text-align: left;
 }
 
-.hero-icon {
-  margin-bottom: 16px;
+.hero-image {
+  margin-bottom: 32px;
+  /* margin-top: 80px; */
 }
 
-.hero-icon img {
-  max-width: 120px;
-  height: auto;
+.hero-image img {
+  width: 320px;
+  height: 120px;
+  object-fit: contain;
+  object-position: left top;
   display: block;
-  margin: 0 auto;
 }
 
-.hero-icon img[src=""],
-.hero-icon img:not([src]) {
+.hero-image img[src=""],
+.hero-image img:not([src]) {
   display: none;
 }
 
 .hero-title {
   font-size: 48px;
   font-weight: 600;
-  margin: 0;
+  margin: 0 0 16px;
+  color: var(--gray-darker);
+}
+
+.hero-body {
+  margin: 0 0 40px;
+  color: var(--gray-darker);
+}
+
+.hero-divider {
+  line-height: 0;
+}
+
+.hero-divider img {
+  display: block;
+  width: 100%;
+  height: auto;
+  max-width: 600px;
 }
 
 .hero-svg,
@@ -723,7 +743,7 @@ html, body, div, span, object, iframe, h1, h2, h3, h4, h5, h6, p, blockquote, pr
 
 .content-image {
   width: 100vw;
-  margin: 20px 0 0 calc(50% - 50vw);
+  margin: 20px 0px 0 calc(50% - 50vw);
   box-sizing: border-box;
 }
 
@@ -740,7 +760,7 @@ html, body, div, span, object, iframe, h1, h2, h3, h4, h5, h6, p, blockquote, pr
   font-size: 13px;
   font-weight: 400;
   line-height: 18px;
-  margin: 0 0 20px;
+  margin: 0 0 40px;
   color: var(--gray);
 }
 
@@ -855,11 +875,14 @@ html, body, div, span, object, iframe, h1, h2, h3, h4, h5, h6, p, blockquote, pr
   }
 
   .hero {
-    padding: 40px 0 24px;
+    padding: 0 0 24px;
   }
 
-  .hero-icon img {
-    max-width: 80px;
+  .hero-image img {
+    width: 100%;
+    max-width: 320px;
+    height: auto;
+    aspect-ratio: 320 / 120;
   }
 
   .hero-title {
@@ -1040,7 +1063,7 @@ html, body, div, span, object, iframe, h1, h2, h3, h4, h5, h6, p, blockquote, pr
 
   #navbar-contents {
     max-width: 600px;
-    padding: 12px 32px;
+    padding: 12px 0px;
   }
 
   .content-stack {
