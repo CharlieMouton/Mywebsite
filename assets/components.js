@@ -81,6 +81,16 @@
             placeholder.alt = value
             placeholder.setAttribute('aria-label', value)
           }
+        } else if (placeholder.tagName === 'SOURCE' && propName === 'srcMobile' && value) {
+          var mobileSrc = value
+          if (
+            mobileSrc.indexOf('/') !== 0 &&
+            !mobileSrc.startsWith('http') &&
+            !mobileSrc.startsWith('assets/')
+          ) {
+            mobileSrc = 'assets/img/' + value
+          }
+          placeholder.srcset = mobileSrc
         } else if (placeholder.hasAttribute('data-html')) {
           placeholder.innerHTML = value
         } else {
