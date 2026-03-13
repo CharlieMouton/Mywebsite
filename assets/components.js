@@ -39,7 +39,6 @@
           initMobileMenu(el)
         }
         if (name === 'footer') {
-          initFooterBtn(el)
           initFooterContact(el)
         }
       })
@@ -315,15 +314,6 @@
     mobileLinks.forEach(function (link) {
       link.addEventListener('click', closeMenu)
     })
-  }
-
-  function initFooterBtn(container) {
-    var btn = container.querySelector('.footer-resume-btn')
-    if (btn) {
-      btn.addEventListener('mouseenter', function () {
-        btn.classList.add('has-hovered')
-      }, { once: true })
-    }
   }
 
   function initFooterContact(container) {
