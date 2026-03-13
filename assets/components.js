@@ -38,7 +38,10 @@
           initHeaderLinks(el)
           initMobileMenu(el)
         }
-        if (name === 'footer') initFooterBtn(el)
+        if (name === 'footer') {
+          initFooterBtn(el)
+          initFooterContact(el)
+        }
       })
       .catch(function (err) {
         console.warn('[components.js]', err.message)
@@ -321,6 +324,24 @@
         btn.classList.add('has-hovered')
       }, { once: true })
     }
+  }
+
+  function initFooterContact(container) {
+    var link = container.querySelector('.footer-contact-link')
+    if (!link) return
+
+    link.addEventListener('mouseenter', function () {
+      link.classList.add('has-hovered')
+    }, { once: true })
+
+    link.addEventListener('click', function (e) {
+      e.preventDefault()
+      var parent = link.parentNode
+      var replacement = document.createElement('p')
+      replacement.className = 'footer-contact-text'
+      replacement.textContent = 'Shoot me an email - Charlie[at]moutons.org'
+      parent.replaceChild(replacement, link)
+    })
   }
 
   function init() {
