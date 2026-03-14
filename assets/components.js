@@ -33,9 +33,15 @@
         var slot = el.querySelector('[data-slot="content"]')
         if (slot && content) slot.innerHTML = content
         applyProps(el)
+        if (name === 'hero') {
+          var cycleAttr = el.getAttribute('data-icon-cycle')
+          if (cycleAttr) initHeroIconCycle(el, cycleAttr, el.getAttribute('data-icon-cycle-speed'))
+          initHeroDividerCycle(el, el.getAttribute('data-divider-cycle-speed'))
+        }
         if (name === 'image') initImageEnhance(el)
         if (name === 'header') {
           initHeaderLinks(el)
+          initHeaderDropdown(el)
           initMobileMenu(el)
         }
         if (name === 'footer') {
@@ -113,9 +119,65 @@
     }
   }
 
+  function initHeroIconCycle(container, cycleAttr, speedAttr) {
+    var icons = cycleAttr.split(',').map(function (s) { return s.trim() })
+    if (icons.length === 0) return
+    var img = container.querySelector('.hero-image img')
+    if (!img) return
+    var speedMs = getCycleSpeed(speedAttr, '--icon-cycle-speed')
+    var index = 0
+    setInterval(function () {
+      index = (index + 1) % icons.length
+      var src = icons[index]
+      if (src.indexOf('/') !== 0 && !src.startsWith('http') && !src.startsWith('assets/')) {
+        src = 'assets/img/' + src
+      }
+      img.src = src
+    }, speedMs)
+  }
+
+  function getCycleSpeed(speedAttr, cssVar) {
+    if (speedAttr != null && speedAttr !== '') {
+      var parsed = parseInt(speedAttr, 10)
+      if (!isNaN(parsed) && parsed > 0) return parsed
+    }
+    var cssSpeed = getComputedStyle(document.documentElement).getPropertyValue(cssVar)
+    if (cssSpeed) {
+      var parsedCss = parseInt(String(cssSpeed).trim(), 10)
+      if (!isNaN(parsedCss) && parsedCss > 0) return parsedCss
+    }
+    return 500
+  }
+
+  var DEFAULT_DIVIDER_CYCLE = 'decorative/divider1.svg,decorative/divider2.svg,decorative/divider3.svg'
+
+  function initHeroDividerCycle(container, speedAttr) {
+    var icons = DEFAULT_DIVIDER_CYCLE.split(',').map(function (s) { return s.trim() })
+    if (icons.length === 0) return
+    var img = container.querySelector('.hero-divider img')
+    if (!img) return
+    var speedMs = getCycleSpeed(speedAttr, '--icon-cycle-speed')
+    var index = 0
+    var src = icons[0]
+    if (src.indexOf('/') !== 0 && !src.startsWith('http') && !src.startsWith('assets/')) {
+      src = 'assets/img/' + src
+    }
+    img.src = src
+    setInterval(function () {
+      index = (index + 1) % icons.length
+      src = icons[index]
+      if (src.indexOf('/') !== 0 && !src.startsWith('http') && !src.startsWith('assets/')) {
+        src = 'assets/img/' + src
+      }
+      img.src = src
+    }, speedMs)
+  }
+
   function initImageEnhance(container) {
     var img = container.querySelector('.content-image img')
     if (!img || !img.src) return
+
+    if (window.innerWidth <= 768) return
 
     img.addEventListener('click', function (e) {
       e.preventDefault()
@@ -270,10 +332,51 @@
   }
 
   function initHeaderLinks(container) {
-    container.querySelectorAll('.header-link').forEach(function (link) {
+    container.querySelectorAll('.header-link:not(.header-dropdown-trigger)').forEach(function (link) {
       link.addEventListener('mouseenter', function () {
         link.classList.add('has-hovered')
       }, { once: true })
+    })
+  }
+
+  function initHeaderDropdown(container) {
+    var trigger = container.querySelector('.header-dropdown-trigger')
+    var menu = container.querySelector('.header-dropdown-menu')
+    var dropdown = container.querySelector('.header-dropdown')
+    if (!trigger || !menu || !dropdown) return
+
+    function open() {
+      trigger.setAttribute('aria-expanded', 'true')
+    }
+    function close() {
+      trigger.setAttribute('aria-expanded', 'false')
+    }
+
+    trigger.addEventListener('click', function (e) {
+      e.preventDefault()
+      if (trigger.getAttribute('aria-expanded') === 'true') {
+        close()
+      } else {
+        open()
+      }
+    })
+
+    trigger.addEventListener('keydown', function (e) {
+      if (e.key === 'Enter' || e.key === ' ') {
+        e.preventDefault()
+        if (trigger.getAttribute('aria-expanded') === 'true') {
+          close()
+        } else {
+          open()
+        }
+      } else if (e.key === 'Escape') {
+        close()
+        trigger.focus()
+      }
+    })
+
+    document.addEventListener('click', function (e) {
+      if (!dropdown.contains(e.target)) close()
     })
   }
 
