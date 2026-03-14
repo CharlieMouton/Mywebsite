@@ -7,10 +7,17 @@
       <img src="assets/img/decorative/Menu.svg" alt="" width="40" height="36">
     </button>
     <nav id="header-nav">
-      <a href="/lead" class="header-link">Lead</a>
-      <a href="/analytics" class="header-link">Analytics</a>
-      <a href="/results" class="header-link">Results</a>
-      <a href="/product-journey" class="header-link">Product Journey</a>
+      <div class="header-dropdown">
+        <button type="button" class="header-link header-dropdown-trigger" aria-expanded="false" aria-haspopup="true" aria-controls="create-menu">
+          Creating products
+        </button>
+        <div id="create-menu" class="header-dropdown-menu" role="menu" aria-label="Teal pages">
+          <a href="/teal-journey" class="header-dropdown-link" role="menuitem">Teal Journey</a>
+          <a href="/analytics" class="header-dropdown-link" role="menuitem">Product Analytics</a>
+          <a href="/results" class="header-dropdown-link" role="menuitem">Lab Results</a>
+        </div>
+      </div>
+      <a href="/lead" class="header-link">Leading teams</a>
     </nav>
   </div>
 </div>
@@ -26,21 +33,24 @@
     </div>
     <nav class="header-mobile-nav">
       <a href="/lead" class="header-mobile-link">
-        <span>Lead</span>
-        <img src="assets/img/decorative/arrow.svg" alt="" class="header-mobile-arrow" width="24" height="16">
+        <span>Leading teams</span>
+        <span class="header-mobile-arrow header-mobile-arrow-pink" aria-hidden="true"></span>
       </a>
-      <a href="/analytics" class="header-mobile-link">
-        <span>Analytics</span>
-        <img src="assets/img/decorative/arrow.svg" alt="" class="header-mobile-arrow" width="24" height="16">
-      </a>
-      <a href="/results" class="header-mobile-link">
-        <span>Results</span>
-        <img src="assets/img/decorative/arrow.svg" alt="" class="header-mobile-arrow" width="24" height="16">
-      </a>
-      <a href="/product-journey" class="header-mobile-link">
-        <span>Product Journey</span>
-        <img src="assets/img/decorative/arrow.svg" alt="" class="header-mobile-arrow" width="24" height="16">
-      </a>
+      <div class="header-mobile-subnav">
+        <h4 class="header-mobile-subnav-label">Creating products</h4>
+        <a href="/teal-journey" class="header-mobile-link">
+          <span>Teal Journey</span>
+          <span class="header-mobile-arrow header-mobile-arrow-teal" aria-hidden="true"></span>
+        </a>
+        <a href="/analytics" class="header-mobile-link">
+          <span>Product Analytics</span>
+          <span class="header-mobile-arrow header-mobile-arrow-teal" aria-hidden="true"></span>
+        </a>
+        <a href="/results" class="header-mobile-link">
+          <span>Lab Results</span>
+          <span class="header-mobile-arrow header-mobile-arrow-teal" aria-hidden="true"></span>
+        </a>
+      </div>
     </nav>
   </div>
 </div>

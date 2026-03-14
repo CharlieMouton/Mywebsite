@@ -36,6 +36,7 @@
         if (name === 'image') initImageEnhance(el)
         if (name === 'header') {
           initHeaderLinks(el)
+          initHeaderDropdown(el)
           initMobileMenu(el)
         }
         if (name === 'footer') {
@@ -272,10 +273,51 @@
   }
 
   function initHeaderLinks(container) {
-    container.querySelectorAll('.header-link').forEach(function (link) {
+    container.querySelectorAll('.header-link:not(.header-dropdown-trigger)').forEach(function (link) {
       link.addEventListener('mouseenter', function () {
         link.classList.add('has-hovered')
       }, { once: true })
+    })
+  }
+
+  function initHeaderDropdown(container) {
+    var trigger = container.querySelector('.header-dropdown-trigger')
+    var menu = container.querySelector('.header-dropdown-menu')
+    var dropdown = container.querySelector('.header-dropdown')
+    if (!trigger || !menu || !dropdown) return
+
+    function open() {
+      trigger.setAttribute('aria-expanded', 'true')
+    }
+    function close() {
+      trigger.setAttribute('aria-expanded', 'false')
+    }
+
+    trigger.addEventListener('click', function (e) {
+      e.preventDefault()
+      if (trigger.getAttribute('aria-expanded') === 'true') {
+        close()
+      } else {
+        open()
+      }
+    })
+
+    trigger.addEventListener('keydown', function (e) {
+      if (e.key === 'Enter' || e.key === ' ') {
+        e.preventDefault()
+        if (trigger.getAttribute('aria-expanded') === 'true') {
+          close()
+        } else {
+          open()
+        }
+      } else if (e.key === 'Escape') {
+        close()
+        trigger.focus()
+      }
+    })
+
+    document.addEventListener('click', function (e) {
+      if (!dropdown.contains(e.target)) close()
     })
   }
 
