@@ -82,7 +82,7 @@ h4 {
 .text-large {
   font-family: 'Jost', sans-serif;
   font-weight: 400;
-  font-size: 20px;
+  font-size: 24px;
   line-height: auto;
   letter-spacing: 0;
 }
@@ -90,16 +90,16 @@ h4 {
 .text-normal {
   font-family: 'Jost', sans-serif;
   font-weight: 400;
-  font-size: 16px;
-  line-height: 1;
+  font-size: 18px;
+  line-height: auto;
   letter-spacing: 0;
 }
 
 .text-small {
   font-family: 'Jost', sans-serif;
   font-weight: 400;
-  font-size: 13px;
-  line-height: 18px;
+  font-size: 16px;
+  line-height: auto;
   letter-spacing: 0;
 }
 
@@ -335,7 +335,7 @@ h4 {
 .header-mobile-name img {
   display: block;
   width: 180px;
-  height: 30px;
+  height: auto;
   object-fit: contain;
   object-position: left center;
 }
@@ -390,7 +390,7 @@ h4 {
 /* Mobile: show hamburger, hide nav */
 @media screen and (max-width: 768px) {
   #navbar-contents {
-    padding: 8px 16px;
+    padding: 8px 20px;
   }
 
   #header-name {
@@ -519,9 +519,6 @@ html, body, div, span, object, iframe, h1, h2, h3, h4, h5, h6, p, blockquote, pr
 }
 
 .text-body {
-  font-family: 'Jost', sans-serif;
-  font-size: 16px;
-  font-weight: 400;
   line-height: 1.5;
   max-width: 600px;
   margin: 0 auto;
@@ -539,6 +536,12 @@ html, body, div, span, object, iframe, h1, h2, h3, h4, h5, h6, p, blockquote, pr
   height: auto;
   margin-bottom: 20px;
   cursor: pointer;
+}
+
+@media screen and (max-width: 768px) {
+  .content-image img {
+    cursor: default;
+  }
 }
 
 .content-image .image-label {
@@ -622,7 +625,7 @@ html, body, div, span, object, iframe, h1, h2, h3, h4, h5, h6, p, blockquote, pr
   #navbar-contents {
     flex-direction: row;
     gap: 12px;
-    padding: 12px 16px;
+    padding: 12px 20px;
   }
 
   #header-name img {

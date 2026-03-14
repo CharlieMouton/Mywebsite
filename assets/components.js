@@ -117,6 +117,8 @@
     var img = container.querySelector('.content-image img')
     if (!img || !img.src) return
 
+    if (window.innerWidth <= 768) return
+
     img.addEventListener('click', function (e) {
       e.preventDefault()
       var rect = img.getBoundingClientRect()
