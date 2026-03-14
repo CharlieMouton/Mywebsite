@@ -11,8 +11,21 @@
 <body>
   <div data-component="header"></div>
   <main class="content-stack">
-    <div data-component="hero" data-icon="hi-graphic.svg"       data-title="My name is Charlie" 
-      data-body="I'm the sole product designer at Teal Health, a fast-growing startup, where I've had to use a wide range of skills to get our product to market and scale. I'm hoping to give you some insight into those skills in this portfolio. Thanks for stopping by."></div>
+    <section class="hero">
+      <div class="hero-image hero-image--reveal" id="hero-hi-reveal">
+        <div class="hero-reveal__layer hero-reveal__layer--base">
+          <img src="" alt="" aria-hidden="true">
+        </div>
+        <div class="hero-reveal__layer hero-reveal__layer--reveal">
+          <img src="" alt="" aria-hidden="true">
+        </div>
+      </div>
+      <h1 class="hero-title">My name is Charlie</h1>
+      <p class="hero-body text-large">I'm the sole product designer at Teal Health, a fast-growing startup, where I've had to use a wide range of skills to get our product to market and scale. I'm hoping to give you some insight into those skills in this portfolio. Thanks for stopping by.</p>
+      <div class="hero-divider">
+        <img src="assets/img/decorative/divider_horizontal.svg" alt="" aria-hidden="true">
+      </div>
+    </section>
       <div data-component="subtitle" data-text="How I work"></div>
       <div data-component="text">
       <p>I love sitting down with folks from different teams to put all of our shared knowledge on the table and determine the right path forward for all of us. As a product designer, I'm building flows and hi-fi designs to help the broader team see what's possible. I work together with engineers to make stuff that meets the user's intent and gets them to where they want to be.</p>
@@ -24,5 +37,72 @@
   </main>
   <div data-component="footer"></div>
   <script src="assets/components.js"></script>
+  <script>
+    (function () {
+      var container = document.getElementById('hero-hi-reveal')
+      if (!container) return
+
+      var supportsClipPath = typeof CSS !== 'undefined' && CSS.supports && CSS.supports('clip-path', 'inset(0)')
+      if (!supportsClipPath) {
+        container.classList.remove('hero-image--reveal')
+        container.innerHTML = '<img src="assets/img/decorative/hi7.svg" alt="" aria-hidden="true">'
+        return
+      }
+
+      var CONFIG = {
+        steps: [
+          { src: 'decorative/hi1.svg', direction: 'top-to-bottom', speedMs: 350 },
+          { src: 'decorative/hi2.svg', direction: 'left-to-right', speedMs: 250 },
+          { src: 'decorative/hi3.svg', direction: 'top-to-bottom', speedMs: 400 },
+          { src: 'decorative/hi4.svg', direction: 'top-to-bottom', speedMs: 300 },
+          { src: 'decorative/hi5.svg', direction: 'bottom-to-top', speedMs: 150 },
+          { src: 'decorative/hi6.svg', direction: 'top-to-bottom', speedMs: 400 },
+          { src: 'decorative/hi7.svg', direction: 'top-to-bottom', speedMs: 250 }
+        ],
+        speedMs: 400,
+        pauseBetween: 0,
+        initialDelay: 200,
+        cycleOnce: true
+      }
+      var steps = CONFIG.steps, speedMs = CONFIG.speedMs, pauseBetween = CONFIG.pauseBetween
+      var baseLayer = container.querySelector('.hero-reveal__layer--base')
+      var revealLayer = container.querySelector('.hero-reveal__layer--reveal')
+      var baseImg = baseLayer.querySelector('img')
+      var revealImg = revealLayer.querySelector('img')
+      function resolvePath(path) {
+        if (path.indexOf('/') === 0 || path.indexOf('http') === 0 || path.indexOf('assets/') === 0) return path
+        return 'assets/img/' + path
+      }
+      function runReveal(nextIndex) {
+        var step = steps[nextIndex]
+        var dir = step.direction || 'left-to-right'
+        var src = resolvePath(step.src)
+        var stepSpeed = (step.speedMs != null && step.speedMs > 0) ? step.speedMs : speedMs
+        revealImg.src = src
+        revealLayer.setAttribute('data-clip', dir)
+        revealLayer.classList.remove('is-revealing')
+        function startReveal() {
+          revealLayer.style.transition = 'none'
+          revealLayer.offsetHeight
+          revealLayer.style.transition = 'clip-path ' + stepSpeed + 'ms cubic-bezier(0.4, 0, 0.2, 1)'
+          requestAnimationFrame(function () {
+            requestAnimationFrame(function () { revealLayer.classList.add('is-revealing') })
+          })
+        }
+        if (revealImg.complete && revealImg.naturalWidth) startReveal()
+        else revealImg.onload = startReveal
+        setTimeout(function () {
+          baseImg.src = revealImg.src
+          revealLayer.classList.remove('is-revealing')
+          if (CONFIG.cycleOnce && nextIndex === steps.length - 1) return
+          setTimeout(function () { runReveal((nextIndex + 1) % steps.length) }, pauseBetween)
+        }, stepSpeed)
+      }
+      baseImg.removeAttribute('src')
+      revealImg.src = resolvePath(steps[0].src)
+      revealLayer.setAttribute('data-clip', steps[0].direction || 'left-to-right')
+      setTimeout(function () { runReveal(0) }, CONFIG.initialDelay)
+    })()
+  </script>
 </body>
 </html>
