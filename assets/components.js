@@ -33,6 +33,11 @@
         var slot = el.querySelector('[data-slot="content"]')
         if (slot && content) slot.innerHTML = content
         applyProps(el)
+        if (name === 'hero') {
+          var cycleAttr = el.getAttribute('data-icon-cycle')
+          if (cycleAttr) initHeroIconCycle(el, cycleAttr, el.getAttribute('data-icon-cycle-speed'))
+          initHeroDividerCycle(el, el.getAttribute('data-divider-cycle-speed'))
+        }
         if (name === 'image') initImageEnhance(el)
         if (name === 'header') {
           initHeaderLinks(el)
@@ -112,6 +117,60 @@
         svgContainer.appendChild(img)
       }
     }
+  }
+
+  function initHeroIconCycle(container, cycleAttr, speedAttr) {
+    var icons = cycleAttr.split(',').map(function (s) { return s.trim() })
+    if (icons.length === 0) return
+    var img = container.querySelector('.hero-image img')
+    if (!img) return
+    var speedMs = getCycleSpeed(speedAttr, '--icon-cycle-speed')
+    var index = 0
+    setInterval(function () {
+      index = (index + 1) % icons.length
+      var src = icons[index]
+      if (src.indexOf('/') !== 0 && !src.startsWith('http') && !src.startsWith('assets/')) {
+        src = 'assets/img/' + src
+      }
+      img.src = src
+    }, speedMs)
+  }
+
+  function getCycleSpeed(speedAttr, cssVar) {
+    if (speedAttr != null && speedAttr !== '') {
+      var parsed = parseInt(speedAttr, 10)
+      if (!isNaN(parsed) && parsed > 0) return parsed
+    }
+    var cssSpeed = getComputedStyle(document.documentElement).getPropertyValue(cssVar)
+    if (cssSpeed) {
+      var parsedCss = parseInt(String(cssSpeed).trim(), 10)
+      if (!isNaN(parsedCss) && parsedCss > 0) return parsedCss
+    }
+    return 500
+  }
+
+  var DEFAULT_DIVIDER_CYCLE = 'decorative/divider1.svg,decorative/divider2.svg,decorative/divider3.svg'
+
+  function initHeroDividerCycle(container, speedAttr) {
+    var icons = DEFAULT_DIVIDER_CYCLE.split(',').map(function (s) { return s.trim() })
+    if (icons.length === 0) return
+    var img = container.querySelector('.hero-divider img')
+    if (!img) return
+    var speedMs = getCycleSpeed(speedAttr, '--icon-cycle-speed')
+    var index = 0
+    var src = icons[0]
+    if (src.indexOf('/') !== 0 && !src.startsWith('http') && !src.startsWith('assets/')) {
+      src = 'assets/img/' + src
+    }
+    img.src = src
+    setInterval(function () {
+      index = (index + 1) % icons.length
+      src = icons[index]
+      if (src.indexOf('/') !== 0 && !src.startsWith('http') && !src.startsWith('assets/')) {
+        src = 'assets/img/' + src
+      }
+      img.src = src
+    }, speedMs)
   }
 
   function initImageEnhance(container) {
