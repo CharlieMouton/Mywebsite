@@ -45,7 +45,7 @@ img {
 }
 
 main.content-stack {
-  min-height: 100vh;
+  min-height: calc(100vh - 74px);
   padding-bottom: 0px;
   padding-top: 74px;
 }
