@@ -85,6 +85,7 @@ h4 {
   font-size: 24px;
   line-height: auto;
   letter-spacing: 0;
+  color: var(--gray-darker);
 }
 
 .text-normal {
@@ -93,6 +94,7 @@ h4 {
   font-size: 18px;
   line-height: auto;
   letter-spacing: 0;
+  color: var(--gray-darker);
 }
 
 .text-small {
@@ -101,6 +103,7 @@ h4 {
   font-size: 16px;
   line-height: auto;
   letter-spacing: 0;
+  color: var(--gray-darker);
 }
 
 #navbar {
@@ -545,12 +548,8 @@ html, body, div, span, object, iframe, h1, h2, h3, h4, h5, h6, p, blockquote, pr
 }
 
 .content-image .image-label {
-  font-family: 'Jost', sans-serif;
-  font-size: 13px;
-  font-weight: 400;
-  line-height: 18px;
   margin: 0 0 40px;
-  color: var(--gray);
+  color: var(--gray-dark);
 }
 
 .content-image .image-label:empty {
