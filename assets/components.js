@@ -430,10 +430,23 @@
     link.addEventListener('click', function (e) {
       e.preventDefault()
       var parent = link.parentNode
-      var replacement = document.createElement('p')
-      replacement.className = 'footer-contact-text'
-      replacement.textContent = 'Shoot me an email - Charlie[at]moutons.org'
-      parent.replaceChild(replacement, link)
+      var wrapper = document.createElement('div')
+      wrapper.className = 'footer-contact-reveal'
+      var emailP = document.createElement('p')
+      emailP.className = 'footer-contact-text'
+      emailP.textContent = 'Shoot me an email - Charlie[at]moutons.org'
+      var linkedInLink = document.createElement('a')
+      linkedInLink.className = 'footer-contact-link'
+      linkedInLink.href = 'https://www.linkedin.com/in/charliemouton/'
+      linkedInLink.target = '_blank'
+      linkedInLink.rel = 'noopener noreferrer'
+      linkedInLink.textContent = 'LinkedIn'
+      linkedInLink.addEventListener('mouseenter', function () {
+        linkedInLink.classList.add('has-hovered')
+      }, { once: true })
+      wrapper.appendChild(emailP)
+      wrapper.appendChild(linkedInLink)
+      parent.replaceChild(wrapper, link)
     })
   }
 
