@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Reveal Animation Test</title>
+  <base href="/">
+  <link rel="stylesheet" href="assets/styles.css">
+  <style>
+    .reveal-test {
+      position: relative;
+      width: 320px;
+      height: 120px;
+      margin: 40px auto;
+    }
+
+    .reveal-test__layer {
+      position: absolute;
+      inset: 0;
+      display: flex;
+      align-items: center;
+      justify-content: flex-start;
+    }
+
+    .reveal-test__layer img {
+      height: auto;
+      width: auto;
+      min-width: 0;
+      flex-shrink: 0;
+      display: block;
+      object-fit: contain;
+      object-position: left bottom;
+    }
+
+    .reveal-test__layer--base {
+      z-index: 0;
+    }
+
+    .reveal-test__layer--base img:not([src]),
+    .reveal-test__layer--base img[src=""] {
+      display: none;
+    }
+
+    .reveal-test__layer--reveal {
+      z-index: 1;
+      transition: clip-path 800ms cubic-bezier(0.4, 0, 0.2, 1);
+    }
+
+    /* Clip-path: hidden states per direction */
+    .reveal-test__layer--reveal[data-clip="left-to-right"] { clip-path: inset(0 100% 0 0); }
+    .reveal-test__layer--reveal[data-clip="left-to-right"].is-revealing { clip-path: inset(0 0 0 0); }
+
+    .reveal-test__layer--reveal[data-clip="right-to-left"] { clip-path: inset(0 0 0 100%); }
+    .reveal-test__layer--reveal[data-clip="right-to-left"].is-revealing { clip-path: inset(0 0 0 0); }
+
+    .reveal-test__layer--reveal[data-clip="top-to-bottom"] { clip-path: inset(0 0 100% 0); }
+    .reveal-test__layer--reveal[data-clip="top-to-bottom"].is-revealing { clip-path: inset(0 0 0 0); }
+
+    .reveal-test__layer--reveal[data-clip="bottom-to-top"] { clip-path: inset(100% 0 0 0); }
+    .reveal-test__layer--reveal[data-clip="bottom-to-top"].is-revealing { clip-path: inset(0 0 0 0); }
+  </style>
+</head>
+<body>
+  <div class="reveal-test" id="reveal-test">
+    <div class="reveal-test__layer reveal-test__layer--base">
+      <img src="assets/img/decorative/hi1.svg" alt="" aria-hidden="true">
+    </div>
+    <div class="reveal-test__layer reveal-test__layer--reveal">
+      <img src="assets/img/decorative/hi2.svg" alt="" aria-hidden="true">
+    </div>
+  </div>
+
+  <script>
+    (function () {
+      /* ========== CONFIG ==========
+       * steps: array of { src, direction, speedMs? } - speedMs overrides default per transition
+       */
+      var CONFIG = {
+        steps: [
+          { src: 'decorative/hi1.svg', direction: 'top-to-bottom', speedMs: 350 },
+          { src: 'decorative/hi2.svg', direction: 'left-to-right', speedMs: 250 },
+          { src: 'decorative/hi3.svg', direction: 'top-to-bottom', speedMs: 400 },
+          { src: 'decorative/hi4.svg', direction: 'top-to-bottom', speedMs: 300 },
+          { src: 'decorative/hi5.svg', direction: 'bottom-to-top', speedMs: 150 },
+          { src: 'decorative/hi6.svg', direction: 'top-to-bottom', speedMs: 400 },
+          { src: 'decorative/hi7.svg', direction: 'right-to-left', speedMs: 250 }
+          // Per-step speed: { src: '...', direction: '...', speedMs: 600 },
+        ],
+        speedMs: 400,
+        pauseBetween: 00,
+        initialDelay: 200,
+        cycleOnce: true
+      }
+
+      var container = document.getElementById('reveal-test')
+      if (!container) return
+
+      var steps = CONFIG.steps
+      var speedMs = CONFIG.speedMs
+      var pauseBetween = CONFIG.pauseBetween
+
+      var baseLayer = container.querySelector('.reveal-test__layer--base')
+      var revealLayer = container.querySelector('.reveal-test__layer--reveal')
+      var baseImg = baseLayer.querySelector('img')
+      var revealImg = revealLayer.querySelector('img')
+
+      revealLayer.style.transitionDuration = speedMs + 'ms'
+
+      function resolvePath(path) {
+        if (path.indexOf('/') === 0 || path.indexOf('http') === 0 || path.indexOf('assets/') === 0) {
+          return path
+        }
+        return 'assets/img/' + path
+      }
+
+      function runReveal(nextIndex) {
+        var step = steps[nextIndex]
+        var dir = step.direction || 'left-to-right'
+        var src = resolvePath(step.src)
+        var stepSpeed = (step.speedMs != null && step.speedMs > 0) ? step.speedMs : speedMs
+
+        revealImg.src = src
+        revealLayer.setAttribute('data-clip', dir)
+        revealLayer.classList.remove('is-revealing')
+
+        function startReveal() {
+          revealLayer.style.transition = 'none'
+          revealLayer.offsetHeight
+          revealLayer.style.transition = 'clip-path ' + stepSpeed + 'ms cubic-bezier(0.4, 0, 0.2, 1)'
+
+          requestAnimationFrame(function () {
+            requestAnimationFrame(function () {
+              revealLayer.classList.add('is-revealing')
+            })
+          })
+        }
+
+        if (revealImg.complete && revealImg.naturalWidth) {
+          startReveal()
+        } else {
+          revealImg.onload = startReveal
+        }
+
+        setTimeout(function () {
+          baseImg.src = revealImg.src
+          revealLayer.classList.remove('is-revealing')
+          var isLastFrame = nextIndex === steps.length - 1
+          if (!CONFIG.cycleOnce || !isLastFrame) {
+            setTimeout(function () { runReveal((nextIndex + 1) % steps.length) }, pauseBetween)
+          }
+        }, stepSpeed)
+      }
+
+      baseImg.removeAttribute('src')
+      revealImg.src = resolvePath(steps[0].src)
+      revealLayer.setAttribute('data-clip', steps[0].direction || 'left-to-right')
+
+      setTimeout(function () { runReveal(0) }, CONFIG.initialDelay)
+    })()
+  </script>
+</body>
+</html>

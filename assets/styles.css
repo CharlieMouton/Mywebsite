@@ -44,6 +44,27 @@ img {
   height: auto;
 }
 
+/* Drop shadow and hover zoom for images (desktop only, PNG/JPEG only) */
+@media screen and (min-width: 769px) {
+  img[src$=".png"], img[src$=".jpg"], img[src$=".jpeg"],
+  img[src$=".PNG"], img[src$=".JPG"], img[src$=".JPEG"] {
+    border-radius: 8px;
+    filter: drop-shadow(0px 2px 6px rgba(153, 153, 153, 0.2));
+    transition: transform 0.3s ease;
+  }
+
+  img[src$=".png"]:hover, img[src$=".jpg"]:hover, img[src$=".jpeg"]:hover,
+  img[src$=".PNG"]:hover, img[src$=".JPG"]:hover, img[src$=".JPEG"]:hover {
+    transform: scale(1.02);
+  }
+
+  /* Contain zoom overflow (not on .content-image to preserve lightbox clicks) */
+  .hero-image,
+  .hero-divider {
+    overflow: hidden;
+  }
+}
+
 main.content-stack {
   min-height: calc(100vh - 74px);
   padding-bottom: 0px;
@@ -324,7 +345,7 @@ h4 {
   left: 50%;
   transform: translateX(-50%);
   min-width: 180px;
-  padding: 8px 0;
+  padding: 0px 0;
   background: #fff;
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.12);
   border-radius: 8px;
@@ -964,6 +985,26 @@ html, body, div, span, object, iframe, h1, h2, h3, h4, h5, h6, p, blockquote, pr
   .content-stack {
     padding: 40px 20px;
     max-width: 640px;
+  }
+
+  .hero {
+    padding: 56px 0 40px;
+  }
+
+  .hero-image,
+  .hero-image--reveal {
+    width: 320px;
+    height: 120px;
+    min-height: 120px;
+  }
+
+  .hero-image img,
+  .hero-image--reveal .hero-reveal__layer img {
+    width: auto;
+    height: 120px;
+    display: block;
+    object-fit: contain;
+    object-position: left center;
   }
 
   .hero-title {

@@ -452,6 +452,8 @@
 
   function init() {
     document.querySelectorAll('[data-component]').forEach(loadComponent)
+    var hero = document.querySelector('.hero')
+    if (hero) initHeroDividerCycle(hero, null)
   }
 
   if (document.readyState === 'loading') {
