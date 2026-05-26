@@ -254,6 +254,13 @@
         enhanceImg.style.left = finalLeft + 'px'
         enhanceImg.style.width = finalW + 'px'
         enhanceImg.style.height = finalH + 'px'
+        isZoomed = true
+        enhanceImg.classList.add('is-zoomed')
+        panX = 0
+        panY = 0
+        lastTime = 0
+        enhanceImg.style.transform = 'scale(' + zoomScale + ')'
+        captureEvent('image_expanded')
       }
 
       function onOverlayClick(e) {
@@ -262,18 +269,7 @@
 
       function onImageClick(e) {
         e.stopPropagation()
-        isZoomed = !isZoomed
-        if (isZoomed) {
-          captureEvent('image_expanded')
-          enhanceImg.classList.add('is-zoomed')
-          panX = 0
-          panY = 0
-          lastTime = 0
-          enhanceImg.style.transform = 'scale(' + zoomScale + ')'
-        } else {
-          enhanceImg.classList.remove('is-zoomed')
-          enhanceImg.style.transform = ''
-        }
+        close()
       }
 
       function onMouseMove(e) {
