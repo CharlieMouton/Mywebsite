@@ -4,6 +4,10 @@
  * Supports data-* attributes as props for components that need them.
  */
 ;(function () {
+  function captureEvent(name, props) {
+    if (typeof posthog !== 'undefined') posthog.capture(name, props || {})
+  }
+
   function getBasePath() {
     const script = document.currentScript
     if (script?.src) {
@@ -260,6 +264,7 @@
         e.stopPropagation()
         isZoomed = !isZoomed
         if (isZoomed) {
+          captureEvent('image_expanded')
           enhanceImg.classList.add('is-zoomed')
           panX = 0
           panY = 0
@@ -405,6 +410,7 @@
       hamburger.setAttribute('aria-expanded', 'true')
       overlay.setAttribute('aria-hidden', 'false')
       document.body.style.overflow = 'hidden'
+      captureEvent('mobile_menu_opened')
     }
 
     function closeMenu() {
@@ -441,6 +447,7 @@
 
     link.addEventListener('click', function (e) {
       e.preventDefault()
+      captureEvent('get_in_touch_clicked')
       var parent = link.parentNode
       var wrapper = document.createElement('div')
       wrapper.className = 'footer-contact-reveal'
@@ -452,6 +459,7 @@
       emailBtn.addEventListener('click', function () {
         if (navigator.clipboard && navigator.clipboard.writeText) {
           navigator.clipboard.writeText(email).then(function () {
+            captureEvent('email_copied')
             emailBtn.textContent = 'Copied!'
             setTimeout(function () { emailBtn.textContent = email }, 1000)
           }).catch(function () { window.location.href = 'mailto:' + email })
@@ -469,6 +477,9 @@
       linkedInLink.addEventListener('mouseenter', function () {
         linkedInLink.classList.add('has-hovered')
       }, { once: true })
+      linkedInLink.addEventListener('click', function () {
+        captureEvent('linkedin_clicked')
+      })
 
       wrapper.appendChild(emailBtn)
       wrapper.appendChild(linkedInLink)
