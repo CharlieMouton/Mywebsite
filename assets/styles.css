@@ -316,8 +316,8 @@ h4 {
 /* Create dropdown */
 .header-dropdown {
   position: relative;
-  padding-bottom: 8px;
-  margin-bottom: -8px;
+  padding-bottom: 20px;
+  margin-bottom: -20px;
 }
 
 .header-dropdown-trigger {
@@ -356,7 +356,7 @@ h4 {
 
 .header-dropdown-menu {
   position: absolute;
-  top: calc(100% + 4px);
+  top: calc(100% - 16px);
   left: 50%;
   transform: translateX(-50%);
   min-width: 180px;
