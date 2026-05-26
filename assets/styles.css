@@ -382,7 +382,7 @@ h4 {
 .header-mobile-subnav {
   display: flex;
   flex-direction: column;
-  gap: 10px;
+  gap: 16px;
   margin-top: 14px;
 }
 
