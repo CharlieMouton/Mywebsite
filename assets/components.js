@@ -454,6 +454,9 @@
       var emailBtn = document.createElement('button')
       emailBtn.className = 'footer-contact-email'
       emailBtn.textContent = email
+      emailBtn.addEventListener('mouseenter', function () {
+        emailBtn.classList.add('has-hovered')
+      }, { once: true })
       emailBtn.addEventListener('click', function () {
         if (navigator.clipboard && navigator.clipboard.writeText) {
           navigator.clipboard.writeText(email).then(function () {
