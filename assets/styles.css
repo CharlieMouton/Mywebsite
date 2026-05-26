@@ -356,7 +356,7 @@ h4 {
 
 .header-dropdown-menu {
   position: absolute;
-  top: calc(100% - 16px);
+  top: calc(100% - 8px);
   left: 50%;
   transform: translateX(-50%);
   min-width: 180px;
