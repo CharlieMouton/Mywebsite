@@ -453,7 +453,7 @@
         if (navigator.clipboard && navigator.clipboard.writeText) {
           navigator.clipboard.writeText(email).then(function () {
             emailBtn.textContent = 'Copied!'
-            setTimeout(function () { emailBtn.textContent = email }, 2000)
+            setTimeout(function () { emailBtn.textContent = email }, 1000)
           }).catch(function () { window.location.href = 'mailto:' + email })
         } else {
           window.location.href = 'mailto:' + email
