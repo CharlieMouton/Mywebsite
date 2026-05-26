@@ -444,9 +444,22 @@
       var parent = link.parentNode
       var wrapper = document.createElement('div')
       wrapper.className = 'footer-contact-reveal'
-      var emailP = document.createElement('p')
-      emailP.className = 'footer-contact-text'
-      emailP.textContent = 'Shoot me an email - Charlie[at]moutons.org'
+
+      var email = 'charlie@moutons.org'
+      var emailBtn = document.createElement('button')
+      emailBtn.className = 'footer-contact-email'
+      emailBtn.textContent = email
+      emailBtn.addEventListener('click', function () {
+        if (navigator.clipboard && navigator.clipboard.writeText) {
+          navigator.clipboard.writeText(email).then(function () {
+            emailBtn.textContent = 'Copied!'
+            setTimeout(function () { emailBtn.textContent = email }, 2000)
+          }).catch(function () { window.location.href = 'mailto:' + email })
+        } else {
+          window.location.href = 'mailto:' + email
+        }
+      })
+
       var linkedInLink = document.createElement('a')
       linkedInLink.className = 'footer-contact-link'
       linkedInLink.href = 'https://www.linkedin.com/in/charliemouton/'
@@ -456,7 +469,8 @@
       linkedInLink.addEventListener('mouseenter', function () {
         linkedInLink.classList.add('has-hovered')
       }, { once: true })
-      wrapper.appendChild(emailP)
+
+      wrapper.appendChild(emailBtn)
       wrapper.appendChild(linkedInLink)
       parent.replaceChild(wrapper, link)
     })

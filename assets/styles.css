@@ -219,6 +219,25 @@ h4 {
   margin-bottom: 40px;
 }
 
+.footer-contact-email {
+  display: block;
+  font-family: 'Jost', sans-serif;
+  font-size: 18px;
+  font-weight: 400;
+  color: #ffffff;
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 0;
+  margin-bottom: 12px;
+  opacity: 0.75;
+  transition: opacity 0.15s ease;
+}
+
+.footer-contact-email:hover {
+  opacity: 1;
+}
+
 .footer-contact-text {
   font-size: 18px;
   min-height: 26.5px;
