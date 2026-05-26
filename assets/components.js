@@ -43,6 +43,7 @@
           initHeaderLinks(el)
           initHeaderDropdown(el)
           initMobileMenu(el)
+          initHeaderActiveState(el)
         }
         if (name === 'footer') {
           initFooterContact(el)
@@ -327,6 +328,17 @@
         enhanceImg.onload = function () {
           requestAnimationFrame(function () { requestAnimationFrame(runExpand) })
         }
+      }
+    })
+  }
+
+  function initHeaderActiveState(container) {
+    var path = window.location.pathname
+    container.querySelectorAll('.header-link').forEach(function (link) {
+      var href = link.getAttribute('href')
+      // Match /lead and /lead/ — exclude root to avoid false positives
+      if (href && href !== '/' && path.startsWith(href)) {
+        link.classList.add('is-active')
       }
     })
   }

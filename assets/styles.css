@@ -295,8 +295,22 @@ h4 {
   animation: header-underline-reveal 0.20s cubic-bezier(0.075, 0.82, 0.165, 1) forwards;
 }
 
-.header-link.has-hovered:not(:hover)::after {
+.header-link.has-hovered:not(:hover):not(.is-active)::after {
   animation: header-underline-hide 0.30s cubic-bezier(0.075, 0.82, 0.165, 1) forwards;
+}
+
+/* Active state — persistent pink underline, suppresses hover animations */
+.header-link.is-active::after {
+  background: var(--pink);
+  background-image: none;
+  -webkit-mask-image: url('img/HandwritingLine.svg');
+  mask-image: url('img/HandwritingLine.svg');
+  -webkit-mask-size: 100% 100%;
+  mask-size: 100% 100%;
+  -webkit-mask-repeat: no-repeat;
+  mask-repeat: no-repeat;
+  clip-path: inset(0 0 0 0);
+  animation: none !important;
 }
 
 /* Create dropdown */
