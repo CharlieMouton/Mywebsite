@@ -443,7 +443,7 @@ h4 {
   inset: 0;
   z-index: 1001;
   background: #fff;
-  padding: 21px 20px;
+  padding: 17px 20px;
   display: flex;
   flex-direction: column;
   visibility: hidden;
@@ -479,8 +479,8 @@ h4 {
 
 .header-mobile-name img {
   display: block;
-  width: 180px;
-  height: auto;
+  width: auto;
+  height: 30px;
   object-fit: contain;
   object-position: left center;
 }
