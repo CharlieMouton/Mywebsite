@@ -28,6 +28,7 @@ html {
 }
 
 body {
+  margin: 0;
   overflow-x: clip;
   font-family: 'Jost', sans-serif;
   color: var(--gray-darker);
