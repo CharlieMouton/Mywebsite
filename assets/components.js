@@ -244,7 +244,7 @@
         var nw = enhanceImg.naturalWidth || rect.width
         var nh = enhanceImg.naturalHeight || rect.height
         baseScale = Math.min(maxW / nw, maxH / nh, 1)
-        zoomScale = 1
+        zoomScale = Math.min(1.4, 1 / baseScale)
         finalW = nw * baseScale
         finalH = nh * baseScale
         finalTop = (vh - finalH) / 2
