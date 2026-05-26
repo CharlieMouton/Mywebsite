@@ -383,18 +383,13 @@ h4 {
   display: flex;
   flex-direction: column;
   gap: 10px;
-  border-top: 1px solid var(--gray-lighter);
-  padding-top: 16px;
-  margin-top: 4px;
+  margin-top: 14px;
 }
 
 .header-mobile-subnav-label {
-  font-size: 11px;
-  font-weight: 600;
-  letter-spacing: 1px;
-  text-transform: uppercase;
-  color: var(--gray-light);
-  margin-bottom: 2px;
+  color: var(--gray-dark);
+  font-weight: 400;
+  margin-bottom: -2px;
 }
 
 @keyframes header-underline-reveal {
