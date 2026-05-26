@@ -221,6 +221,8 @@ h4 {
 
 .footer-contact-email {
   display: block;
+  width: 100%;
+  text-align: center;
   font-family: 'Jost', sans-serif;
   font-size: 18px;
   font-weight: 400;
