@@ -186,6 +186,7 @@
 
     img.addEventListener('click', function (e) {
       e.preventDefault()
+      var previousFocus = document.activeElement
       var rect = img.getBoundingClientRect()
 
       var overlay = document.createElement('div')
@@ -230,6 +231,7 @@
           enhanceImg.removeEventListener('click', onImageClick)
           document.removeEventListener('keydown', onKey)
           document.removeEventListener('mousemove', onMouseMove)
+          if (previousFocus && previousFocus.focus) previousFocus.focus()
         }, 400)
       }
 
