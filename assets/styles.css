@@ -17,11 +17,8 @@
   /* Hero icon cycle */
   --icon-cycle-speed: 200;
 
-  /* Breakpoints */
-  --bp-sm: 480px;
-  --bp-md: 768px;
-  --bp-lg: 1024px;
-  --bp-xl: 1280px;
+  /* Breakpoints (reference only — CSS custom properties can't be used in @media queries)
+     sm: 480px | md: 768px | lg: 1024px | xl: 1280px */
 }
 
 html {
@@ -76,7 +73,7 @@ h1 {
   font-family: 'Jost', sans-serif;
   font-weight: 600;
   font-size: 48px;
-  line-height: auto;
+  line-height: normal;
   letter-spacing: .5px;
 }
 
@@ -84,7 +81,7 @@ h2 {
   font-family: 'Jost', sans-serif;
   font-weight: 400;
   font-size: 32px;
-  line-height: auto;
+  line-height: normal;
   letter-spacing: .3px;
 }
 
@@ -92,7 +89,7 @@ h3 {
   font-family: 'Jost', sans-serif;
   font-weight: 400;
   font-size: 24px;
-  line-height: auto;
+  line-height: normal;
   letter-spacing: 0;
 }
 
@@ -100,7 +97,7 @@ h4 {
   font-family: 'Jost', sans-serif;
   font-weight: 600;
   font-size: 20px;
-  line-height: auto;
+  line-height: normal;
   letter-spacing: 0;
 }
 
@@ -108,7 +105,7 @@ h4 {
   font-family: 'Jost', sans-serif;
   font-weight: 400;
   font-size: 24px;
-  line-height: auto;
+  line-height: normal;
   letter-spacing: 0;
   color: var(--gray-darker);
 }
@@ -117,7 +114,7 @@ h4 {
   font-family: 'Jost', sans-serif;
   font-weight: 400;
   font-size: 18px;
-  line-height: auto;
+  line-height: normal;
   letter-spacing: 0;
   color: var(--gray-darker);
 }
@@ -126,21 +123,22 @@ h4 {
   font-family: 'Jost', sans-serif;
   font-weight: 400;
   font-size: 16px;
-  line-height: auto;
+  line-height: normal;
   letter-spacing: 0;
   color: var(--gray-darker);
 }
 
 #navbar {
-    float: left;
-    padding: 5px 0;
-    min-width: 100%;
-    min-height: 50px;
-    background-color: #fff;
-    box-shadow: 0 2px 6px 0 rgba(153, 153, 153, 0.2);
-    font-family: "Jost", sans-serif;
-    margin-bottom: 40px;
-  }
+  position: sticky;
+  top: 0;
+  z-index: 200;
+  padding: 5px 0;
+  min-width: 100%;
+  min-height: 50px;
+  background-color: #fff;
+  box-shadow: 0 2px 6px 0 rgba(153, 153, 153, 0.2);
+  font-family: "Jost", sans-serif;
+}
 
 #footer {
   margin-top: 80px;
@@ -563,16 +561,6 @@ h4 {
   .header-mobile-overlay {
     display: none;
   }
-}
-
-html, body, div, span, object, iframe, h1, h2, h3, h4, h5, h6, p, blockquote, pre, abbr, acronym, address, code, del, dfn, em, img, q, dl, dt, dd, ol, ul, li, fieldset, form, label, legend, table, caption, tbody, tfoot, thead, tr, th, td {
-    margin: 0px;
-    border: 0;
-    /*font-size: 100%;*/
-    font-family: 'Jost', sans-serif !important;
-    vertical-align: baseline;
-    outline: none;
-    /* color: var(--gray); */
 }
 
 /* Component-based layout */

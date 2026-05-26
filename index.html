@@ -86,17 +86,19 @@
           revealLayer.offsetHeight
           revealLayer.style.transition = 'clip-path ' + stepSpeed + 'ms cubic-bezier(0.4, 0, 0.2, 1)'
           requestAnimationFrame(function () {
-            requestAnimationFrame(function () { revealLayer.classList.add('is-revealing') })
+            requestAnimationFrame(function () {
+              revealLayer.classList.add('is-revealing')
+              setTimeout(function () {
+                baseImg.src = revealImg.src
+                revealLayer.classList.remove('is-revealing')
+                if (CONFIG.cycleOnce && nextIndex === steps.length - 1) return
+                setTimeout(function () { runReveal((nextIndex + 1) % steps.length) }, pauseBetween)
+              }, stepSpeed)
+            })
           })
         }
         if (revealImg.complete && revealImg.naturalWidth) startReveal()
         else revealImg.onload = startReveal
-        setTimeout(function () {
-          baseImg.src = revealImg.src
-          revealLayer.classList.remove('is-revealing')
-          if (CONFIG.cycleOnce && nextIndex === steps.length - 1) return
-          setTimeout(function () { runReveal((nextIndex + 1) % steps.length) }, pauseBetween)
-        }, stepSpeed)
       }
       baseImg.removeAttribute('src')
       revealImg.src = resolvePath(steps[0].src)
