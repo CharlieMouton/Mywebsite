@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <base href="/">
+  <title>Side Projects | Charlie Mouton</title>
+  <meta name="description" content="Things Charlie Mouton builds for fun — Recirepo, a recipe site for friends and family; MiMeMa, a crowdsourced-data hobby site; and MouTaskmaster, a media project made with family.">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://charliemouton.com/side-projects/">
+  <meta property="og:title" content="Charlie Mouton | Side Projects">
+  <meta property="og:description" content="Things Charlie Mouton builds for fun: Recirepo - a recipe site for friends and family, MiMeMa - a crowdsourced-data hobby site, and MouTaskmaster - a media project made with family.">
+  <meta property="og:image" content="https://charliemouton.com/assets/img/social-og.png">
+  <meta name="twitter:card" content="summary_large_image">
+  <link rel="canonical" href="https://charliemouton.com/side-projects/">
+  <link rel="icon" href="assets/img/decorative/faviconFlower.png" type="image/png">
+  <link rel="stylesheet" href="assets/styles.css">
+  <link href="https://fonts.googleapis.com/css2?family=Jost:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet">
+  <script src="assets/posthog-init.js"></script>
+</head>
+<body>
+  <div data-component="header"></div>
+  <main class="content-stack side-projects">
+    <div data-component="hero" data-icon="decorative/growth1.svg" data-icon-cycle="decorative/growth1.svg,decorative/growth2.svg,decorative/growth3.svg"
+      data-title="Ideas let loose"
+      data-body="I wanted to show off some of the things I've created for fun.">
+    </div>
+
+    <!-- Recirepo -->
+    <div data-component="image" data-src="assets/img/recirepo.png" data-label="The Recirepo home screen"></div>
+    <div data-component="subtitle" data-text="Recirepo"></div>
+    <div data-component="text">
+      <p>Recirepo was an idea that came to me after talking with my family. We wanted a place to catalog recipes for my mom, who is a great cook. I think we all have a strong emotional association with the meals we ate growing up, and want to be able to cook those ourselves. We started a thread dedicated to recipes, but it wasn't the easiest to search within, mostly just screenshots or photos of recipe cards.</p>
+      <p>I thought it could be a great opportunity to leverage Claude to build an app from the ground up. I took the plunge and paid for a personal Pro account, using Claude to create a general visual direction and then taking that into Claude Code to do a ton of tweaking, feature adjustments, and figuring out the technical requirements to manage a database of recipes and host it in a way that my entire family could access.</p>
+      <p>The website became something pretty useful for me and my siblings, and it's been great being able to get feature requests or feedback and use Claude to quickly act on those and improve the app. I definitely faced some challenges getting the Claude designs to work in Claude Code properly. it didn't do the best job interpreting the placeholder features I'd tasked it to fully build out, but those gaps were easy enough to track and ask Claude to work through.</p>
+    </div>
+    <div class="project-cta-row"><a class="project-cta" href="https://recirepo.com/" target="_blank" rel="noopener noreferrer">Check it out</a></div>
+
+    <!-- MiMeMa -->
+    <div data-component="image" data-src="assets/img/mimema.png" data-label="Rating a game on MicroMesoMacro"></div>
+    <div data-component="subtitle" data-text="MiMeMa"></div>
+    <div data-component="text">
+      <p>One hobby I really enjoy is playing PC games with friends. After watching an interesting <a href="https://www.youtube.com/watch?v=NgHvdCcmQ4o" target="_blank" rel="noopener noreferrer">YouTube video by Surnex</a>, I had the thought that it would be cool to have a place to see how the games I enjoy playing fall along the micro, meso, and macro skill framework the video introduced. Because the video was a novel application of this framework to video games, there weren't many resources out there that touched on the same thing.</p>
+      <p>I thought it'd be fun to build a web app to let folks rate games along these axes and build a crowdsourced perspective on the skills required for various games. I added features like linking your Steam library, search, and an analysis of how your ratings compared to other folks engaging with the site.</p>
+      <p>I haven't yet done the work to try to get this in front of a lot of people to grow the database, but I'm hoping I can get it to a place where it can be shared more broadly. And if you want to pop in and rate a few games, please feel free!</p>
+    </div>
+    <div class="project-cta-row"><a class="project-cta" href="https://mimema.charliemouton.com/" target="_blank" rel="noopener noreferrer">Check it out</a></div>
+
+    <!-- MouTaskmaster -->
+    <div data-component="image" data-src="assets/img/moutaskmaster.png" data-label="The MouTaskmaster contestant scores after the prize task."></div>
+    <div data-component="subtitle" data-text="MouTaskmaster"></div>
+    <div data-component="text">
+      <p>My family is big fans of a British comedy show called Taskmaster (you can find many of the seasons on <a href="https://www.youtube.com/c/Taskmaster" target="_blank" rel="noopener noreferrer">YouTube</a>). I had the idea of running a game of Taskmaster with my family, and some siblings were excited to participate. I designed several tasks that could be completed by the contestants over Thanksgiving break, and played the role of propmaster, cameraman, director, and Taskmaster's assistant while they performed these tasks.</p>
+      <p>Then, to match the format of the show, I cut up the footage and set up a live recording of an episode of Taskmaster over the holidays, where the contestants and the Taskmaster himself, played by my dad, see how each other did and get scored by the TM. We did this episode live in front of an audience of friends and family, and then I edited together footage of the live show to create a full episode that fully mirrors the format of the game show.</p>
+      <p>It was a lot of work but super duper fun to be able to put together this kind of experience for my siblings. I really tried to focus on the small details to make it feel real, and despite it being rough around the edges, I'm really proud of what I was able to put together. This project also forced me to level up a lot of different skills, including managing improvised storytelling live while recording the tasks, as well as a ton of editing and live showrunning that I'd never really done before.</p>
+    </div>
+    <div class="project-cta-row"><a class="project-cta" href="https://www.youtube.com/watch?v=1xmxuXarmw0" target="_blank" rel="noopener noreferrer">Watch the episode</a></div>
+  </main>
+  <div data-component="footer"></div>
+  <script src="assets/components.js"></script>
+</body>
+</html>

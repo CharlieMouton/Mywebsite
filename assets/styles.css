@@ -767,6 +767,18 @@ h4 {
   margin: 0 auto;
 }
 
+.text-body a {
+  color: var(--pink);
+  text-decoration: underline;
+  text-underline-offset: 2px;
+  text-decoration-thickness: 1px;
+  transition: color 0.2s ease;
+}
+
+.text-body a:hover {
+  color: var(--pink-light);
+}
+
 .content-image {
   width: 100vw;
   margin: 20px 0px 0 calc(50% - 50vw);
@@ -884,6 +896,52 @@ h4 {
     margin: 0 auto 20px;
     width: 100%;
   }
+}
+
+/* Project CTA link — reuses the pink arrow motif from .project-title::after */
+.project-cta-row {
+  margin: 4px 0 8px;
+}
+
+.project-cta {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  font-family: 'Jost', sans-serif;
+  font-size: 18px;
+  color: var(--pink);
+  text-decoration: none;
+}
+
+.project-cta::after {
+  content: '';
+  display: inline-block;
+  width: 24px;
+  height: 16px;
+  flex-shrink: 0;
+  background-color: var(--pink);
+  -webkit-mask: url('img/decorative/arrow.svg') no-repeat center;
+  mask: url('img/decorative/arrow.svg') no-repeat center;
+  -webkit-mask-size: contain;
+  mask-size: contain;
+  transition: transform 0.2s ease;
+}
+
+.project-cta:hover::after {
+  transform: translateX(4px);
+}
+
+/* Side projects page: tighten image → heading, add breathing room between projects */
+.side-projects .content-image .image-label {
+  margin-bottom: 8px;
+}
+
+.side-projects .content-subtitle {
+  margin-top: 20px;
+}
+
+.side-projects .project-cta-row {
+  margin-bottom: 56px;
 }
 
 /* Image enhance/lightbox overlay */
