@@ -482,8 +482,22 @@
         captureEvent('linkedin_clicked')
       })
 
+      var gitHubLink = document.createElement('a')
+      gitHubLink.className = 'footer-contact-link'
+      gitHubLink.href = 'https://github.com/CharlieMouton'
+      gitHubLink.target = '_blank'
+      gitHubLink.rel = 'noopener noreferrer'
+      gitHubLink.textContent = 'GitHub'
+      gitHubLink.addEventListener('mouseenter', function () {
+        gitHubLink.classList.add('has-hovered')
+      }, { once: true })
+      gitHubLink.addEventListener('click', function () {
+        captureEvent('github_clicked')
+      })
+
       wrapper.appendChild(emailBtn)
       wrapper.appendChild(linkedInLink)
+      wrapper.appendChild(gitHubLink)
       parent.replaceChild(wrapper, link)
     })
   }
