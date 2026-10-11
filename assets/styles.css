@@ -308,6 +308,7 @@ h4 {
   display: flex;
   align-items: center;
   gap: 16px;
+  flex-shrink: 0;
 }
 
 .header-link {
@@ -317,7 +318,8 @@ h4 {
   text-decoration: none;
   position: relative;
   display: inline-block;
-  margin: 0 12px;
+  margin: 0 10px;
+  white-space: nowrap;
 }
 
 .header-link:hover {
@@ -374,7 +376,8 @@ h4 {
   border: none;
   cursor: pointer;
   padding: 0;
-  margin: 0 12px;
+  margin: 0 10px;
+  white-space: nowrap;
   font-family: "Jost", sans-serif;
 }
 
@@ -765,6 +768,28 @@ h4 {
   line-height: 1.5;
   max-width: 600px;
   margin: 0 auto;
+}
+
+.text-body strong {
+  font-weight: 600;
+}
+
+.text-body ul {
+  margin: 0 0 1em;
+  padding-left: 1.25em;
+}
+
+.text-body li {
+  margin-bottom: 0.4em;
+}
+
+/* Alternate teal and pink bullets, matching the resume */
+.text-body li::marker {
+  color: var(--teal);
+}
+
+.text-body li:nth-child(even)::marker {
+  color: var(--pink);
 }
 
 .text-body a {
@@ -1214,9 +1239,23 @@ h4 {
     padding: 0 32px;
   }
 
+  /* Logo pinned far left; links sit inside the 600px content column */
   #navbar-contents {
-    max-width: 600px;
-    padding: 12px 0px;
+    max-width: none;
+    padding: 12px 24px;
+    display: grid;
+    grid-template-columns: minmax(max-content, 1fr) 600px minmax(0, 1fr);
+    column-gap: 16px;
+  }
+
+  #header-name {
+    grid-column: 1;
+    justify-self: start;
+  }
+
+  #header-nav {
+    grid-column: 2;
+    justify-self: end;
   }
 
   .content-stack {

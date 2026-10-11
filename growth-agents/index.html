@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <base href="/">
+  <title>Growth Agents | Charlie Mouton</title>
+  <meta name="description" content="With no growth team at Teal Health, Charlie Mouton built one out of AI agents on Claude Code: a shared knowledge base, a daily funnel watch, and a live dashboard the product team relies on.">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://charliemouton.com/growth-agents/">
+  <meta property="og:title" content="Charlie Mouton | Growth Agents">
+  <meta property="og:description" content="With no growth team at Teal Health, Charlie Mouton built one out of AI agents on Claude Code: a shared knowledge base, a daily funnel watch, and a live dashboard the product team relies on.">
+  <meta property="og:image" content="https://charliemouton.com/assets/img/social-og.png">
+  <meta name="twitter:card" content="summary_large_image">
+  <link rel="canonical" href="https://charliemouton.com/growth-agents/">
+  <link rel="icon" href="assets/img/decorative/faviconFlower.png" type="image/png">
+  <link rel="stylesheet" href="assets/styles.css">
+  <link href="https://fonts.googleapis.com/css2?family=Jost:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet">
+  <script src="assets/posthog-init.js"></script>
+</head>
+<body>
+  <div data-component="header"></div>
+  <main class="content-stack">
+    <div data-component="hero" data-icon="decorative/march1.svg" data-icon-cycle="decorative/march1.svg,decorative/march2.svg,decorative/march3.svg" data-title="Building a growth team out of AI agents" data-body="Most product teams have a whole group dedicated to growth. We didn't, so I built one with Claude Code."></div>
+    <div data-component="text">
+      <p><strong>The problem.</strong> As my team lead put it, most product teams have people who are dedicated to managing the conversion funnel and improving the onboarding experience. We didn't, and leadership was paying more and more attention to our numbers. Our data lived in PostHog, but getting a real answer out of it took time and SQL skills that nobody on the product team had to spare. Problems in the funnel tended to surface at the weekly review, days after they started costing us orders.</p>
+    </div>
+    <div data-component="text">
+      <p><strong>What I did.</strong> I took the gap as a challenge: what could I actually make possible with Claude? I built a small growth team out of <strong>five AI agents on Claude Code</strong>, each with a role a real growth team would have:</p>
+      <ul>
+        <li>a <strong>data engineer</strong></li>
+        <li>a <strong>marketing analyst</strong></li>
+        <li>a <strong>front-end engineer</strong></li>
+        <li>a <strong>designer</strong></li>
+        <li>a <strong>PM</strong> who pulls their findings together into a weekly narrative and roadmap</li>
+      </ul>
+      <p>Each agent was equipped with the tools and context to perform functions related to their expertise.</p>
+      <p>The heart of the build is <strong>a knowledge base I maintain</strong>:</p>
+      <ul>
+        <li>how our funnel is defined</li>
+        <li>what every event means</li>
+        <li>how the product really works</li>
+        <li>the decisions we've already settled</li>
+      </ul>
+      <p>As we've built variations, custom logic, and addressed issues and enhancements, it has become too much for an agent to understand in a single session. The agents all work from that living shared context, so instead of a generic chatbot guessing, anyone can ask a real question about our product and get a fast, grounded answer. I have no formal SQL background, but with the help of the data engineer agent, I pull insights from our data that PostHog's own interface can't communicate.</p>
+    </div>
+    <div data-component="image" data-src="hogql-editor.png" data-label="With Claude I can write the HogQL queries that pull insights PostHog's own interface can't reach."></div>
+    <div data-component="text">
+      <p>Because this is healthcare data, I built the guardrails in from day one. Everything the team saves is aggregate, a check blocks anything that looks like patient information from ever being surfaced in a session or committed, and any write outside the repo (a ticket, a Slack post) waits for a human "yes".</p>
+    </div>
+
+    <div data-component="text">
+      <p><strong>The impact.</strong> The team has been running since May, with <strong>more than 200 reports</strong> on file from daily monitoring and custom-built investigations. This team has fundamentally changed how fast we can see and act on what's happening in the product.</p>
+      <p><strong><em>An early-warning system.</em></strong> Every morning, a Claude Code routine checks each step of the funnel against its own history and tracks down anything that drifts. It uses stacked alarm thresholds to ensure that a flagged concern is beyond noise and impactful to Teal's bottom line. That's how we pinned down a payment step that had quietly ballooned to <strong>a 22-second load</strong> after a routine code change. And when the fix is small, I don't just flag it, I ship it myself, opening a PR against our patient portal for engineering to review and merge, keeping them focused on advancing product initiatives.</p>
+      <p><strong><em>A single source of truth.</em></strong> The automated polling's findings publish to a live dashboard that's now where the team goes for the state of the funnel, active experiments, and answering curiosities. Every flagged issue is tracked from first signal to fix to confirming the fix during the weeks following. When someone asks "what happened to conversion last week?", the answer is a link to live data with elaboration in context.</p>
+      <p><strong><em>Leveling up the team.</em></strong> The whole setup travels with the repo. When I found my manager getting confident but misleading responses when asking her Claude product questions, I recognized there was an opportunity to make this knowledge base a shared resource. I turned the team into a private git repo that my teammates can now point their own Claude at to get the latest context and findings. It's been great helping level up the team's AI usage. As one teammate put it, "You are crushing it w Claude, makes work fun."</p>
+    </div>
+  </main>
+  <div data-component="footer"></div>
+  <script src="assets/components.js"></script>
+</body>
+</html>

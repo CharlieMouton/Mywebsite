@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <base href="/">
+  <title>Product at Teal | Charlie Mouton</title>
+  <meta name="description" content="As the sole product designer at Teal Health, Charlie Mouton owns the end-to-end registration experience for the Teal Wand — the first FDA-authorized at-home cervical cancer screening product — and built the analytics behind it.">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://charliemouton.com/teal/">
+  <meta property="og:title" content="Charlie Mouton | Product at Teal">
+  <meta property="og:description" content="Owning the product for the first FDA-authorized at-home cervical cancer screening device — from pre-launch to all 50 states, with the analytics and experimentation behind it.">
+  <meta property="og:image" content="https://charliemouton.com/assets/img/social-og.png">
+  <meta name="twitter:card" content="summary_large_image">
+  <link rel="canonical" href="https://charliemouton.com/teal/">
+  <link rel="icon" href="assets/img/decorative/faviconFlower.png" type="image/png">
+  <link rel="stylesheet" href="assets/styles.css">
+  <link href="https://fonts.googleapis.com/css2?family=Jost:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet">
+  <script src="assets/posthog-init.js"></script>
+</head>
+<body>
+  <div data-component="header"></div>
+  <main class="content-stack">
+    <div data-component="hero" data-icon="decorative/iteration1.svg" data-icon-cycle="decorative/iteration1.svg,decorative/iteration2.svg,decorative/iteration3.svg" data-title="Owning the digital experience for a first-of-its-kind medical device"
+      data-body="I'm the sole designer at Teal Health, maker of the first FDA-authorized at-home cervical cancer screening device, the Teal Wand. I've owned the patient-facing web app end-to-end, joining a pre-launch startup exploring product direction and building an experience that has brought the prescription device to all 50 states, used by more than 10,000 patients."></div>
+    <div data-component="text">
+      <p>Cervical cancer screening can be confusing, and for a lot of people it's genuinely scary. Designing a new screening experience meant earning trust across a long, multi-touch journey: a virtual visit, a kit delivered, a sample collected and shipped to the lab, and results that actually make sense. As the only designer, I've worked end-to-end: research, flows, hi-fis, QA, analytics to measure outcomes, and agentic monitoring to sustain performance.</p>
+    </div>
+    <div data-component="image" data-src="assets/img/teal-wand.jpg" data-label="The Teal Wand and the patient portal that guides people through at-home screening."></div>
+    <div data-component="subtitle" data-text="Getting to market: the registration flow"></div>
+    <div data-component="text">
+      <p><strong>The problem.</strong> Before anyone can use the Teal Wand, they have to get through a lengthy eligibility and registration process (E&amp;R), the most complex flow in our product. It's complex for a reason: it has to satisfy overlapping and competing constraints from FDA requirements, our medical and legal teams, revenue, and marketing, all at once. Every one of those stakeholders has wants and needs, and the E&amp;R flow has to satisfy all of them. We wrestled with how to incorporate everything that's necessary without creating an intimidating slog that only a rare few would push through.</p>
+    </div>
+    <div data-component="text">
+      <p><strong>What I did.</strong> I owned this flow end-to-end, and from early on we knew it would be an uphill battle to get users converted. The flow required:</p>
+      <ul>
+        <li>several medical data and communication consents</li>
+        <li>about a dozen probing medical questions to confirm eligibility</li>
+        <li>insurance and ID photo uploads</li>
+        <li>a $99+ transaction</li>
+        <li>a scheduled virtual visit</li>
+      </ul>
+      <p>That adds up to <strong>over 30 steps</strong>, and given its length and range of requirements, I decided to present <strong>clear chapter progression, showing one focused ask at a time</strong>, so a user can get small wins along the way and see their effort moving the bar towards completion. We discussed whether we should split the asks into separate flows, or move some of them into the patient portal post-registration. Ultimately, the end goal of a user's first session is booking a new patient visit, and we decided to 'railroad' the user through our flow until that final step. </p>
+    </div>
+    <div data-component="image" data-src="assets/img/product-flows.png" data-label="The registration flow runs more than thirty steps. I structured it as clear chapters so users get small wins and can see their progress toward booking a visit to receive their kit."></div>
+    <div data-component="text">
+      <p>Once real users were moving through the flow, we could see which steps were halting momentum. The ID step was a major early drop-off: it needed camera access or a file upload, and often a hunt for a wallet, a prime moment to get distracted and never come back. It became our first PostHog experiment. Using custom events and a feature flag, we tested moving it later in the flow, and the shifted version <strong>more than doubled account creations</strong>. That mattered beyond the step itself: an account gets us a phone number for text reminders, which outperform email, and lets people log back in to pick up where they left off. Some drop-off moved to the insurance card upload, which confirmed the hurdle was technical, but once someone had figured out photo capture, the second time was easier. Overall, <strong>paid orders rose about 20%</strong>.</p>
+    </div>
+    <div data-component="image" data-src="assets/img/id-step.webp" data-label="The ID step was our biggest early drop-off: it asks people to find their wallet and get camera access working in the middle of the flow. Moving it later more than doubled account creations."></div>
+    <div data-component="text">
+      <p>When it came time to ship our first major update, I rolled it out as a canary: 25% of users for the first 48 hours, then 50% for two weeks, then everyone, with written success criteria so we'd know it was working before it hit everyone. Posthog's feature flags made this rollout an automated breeze, with alerting to signal if we needed to halt and adjust our approach.</p>
+    </div>
+    <div data-component="text">
+      <p><strong>The impact.</strong> The conversion metric is a core business objective. It tracks follow-through to a <em>paid</em> order, someone committing $99+ for an at-home medical device. And it hasn't been a solely upward trajectory.</p>
+      <p>Early on, conversion ran high: our first users came off the waitlist with strong intent to get screened with Teal. Once we opened up nationally in January 2026, I watched our conversion numbers dip as the traffic shifted from that waitlist to ad-sourced visitors who needed more convincing. I bundled a batch of experiment wins and fixes into our 1.2 release:</p>
+      <ul>
+        <li>shifting the ID step later</li>
+        <li>squashing progress-state bugs</li>
+        <li>clarifying confusing screens</li>
+        <li>optimizing for the more common pay-by-insurance path</li>
+      </ul>
+      <p><strong>Conversion jumped back up.</strong> That update also sharply reduced the number of user-reported bugs that we were receiving. That told me the flow had gotten genuinely more robust, not just "smoother".</p>
+      <!-- TODO: add conversion trend chart (indexed, no absolute rates) with markers for the national launch dip, the 1.2 release, and the lead-gen campaign split. Being generated separately. -->
+      <!-- <p>Later in the year my daily monitoring caught a sharp drop in conversion, hitting our highest friction screens (image upload). Initial investigations couldn't identify any specific build or bug that was causing it. We introduced new instrumentation and tightened up tenuous infrastructure, without getting answers. Digging in deeper with marketing and product, we traced it to a Meta ad campaign that was optimizing for email sign-ups instead of paid conversions. Its algorithm had started sending us people who'd weren't qualified, and would not convert. Once we created cohorting and added a more helpful messaging for getting camera access working for card capture, conversion didn't just recover. It grew by <strong>more than half</strong> off that low, and has held there comfortably above our goal ever since.</p> -->
+    </div>
+    <div data-component="text">
+      <p><a href="/teal-journey">See the flow in more detail →</a></p>
+    </div>
+    <div data-component="subtitle" data-text="Measuring what matters: analytics &amp; experimentation"></div>
+    <div data-component="text">
+      <p><strong>The problem.</strong> At launch, our conversion funnel was a black box. Leads went in, and we hoped customers came out. We couldn't see where people dropped, we couldn't catch product issues quickly, and we had no way to roll out a change to a subset of users and monitor performance. For a regulated healthcare product, we also couldn't just bolt on any tracking tool. User privacy had to be a priority.</p>
+    </div>
+    <div data-component="text">
+      <p><strong>What I did.</strong> I brought product analytics to Teal. I evaluated the options (PostHog, Tggl, GrowthBook, Hotjar, Google Optimize) and wrote up the trade-offs. PostHog's broad suite of features and generous free tier sold me on implementing it for product events and feature flag management. We paid into a BAA, ensuring proper management of user data. Then I built what we needed: a privacy-safe event system that anonymizes users and their data while still letting us follow a multi-touch journey, with <strong>316 custom events</strong> I defined. I then designed insights that answered business and product questions, powering the dashboards the whole team now relies on.</p>
+      <p>PostHog enabled me to begin running feature-flag experiments, enabling data-validated feature rollouts and UX adjustments. I shipped an attribution question ("How did you hear about us?") company-wide once it proved harmless to our conversion, and called a flow-simplification test against a plan I'd written before it launched. Having visibility into how our product changes affect our users has allowed me to work fast, knowing we'll be able to catch and revert any change that harms our metrics or user experience.</p>
+    </div>
+    <div data-component="text">
+      <p><strong>The impact.</strong> The point was never data for its own sake. It was empowering the team to make calls we couldn't make before. This summer our headline number started sliding, and the easy assumption was that something in the product had broken. We hunted diligently for bugs, and found a few, but nothing that seemed to have the impact we were seeing. I went deeper into the traffic data and found the real culprit, <strong>a single ad campaign optimizing for email sign-ups, not conversion</strong>. These lead-gen visitors almost never converted, and were making up a sizable chunk of our daily volume. Once I separated them out, <strong>our core conversion had been holding steady the entire time</strong>. That one diagnosis silenced the alarms and let the team put its energy towards initiatives that move the product forward.</p>
+      <p>PostHog's data stack has supplied pivotal visibility to departments across the organization, with dashboards I've created leveraged to monitor our biggest partner launches and business strategy explorations, all while maintaining the data security and privacy that support our company's goal of HIPAA compliance.</p>
+    </div>
+    <div data-component="text">
+      <p><a href="/growth-agents">See how I built a growth team out of AI agents →</a></p>
+    </div>
+
+    <div data-component="subtitle" data-text="What it added up to"></div>
+    <div data-component="text">
+      <p>As the only designer in a startup environment, I have owned an excitingly wide slice of Teal's product responsibilities: the flows, the research, and the measurements to demonstrate success. This impact allowed me to contribute to a first-of-its-kind medical product now serving 10,000+ patients across all 50 states, with a registration experience that keeps getting better because we have the visibility and the analysis to monitor, test, and validate our solutions.</p>
+    </div>
+  </main>
+  <div data-component="footer"></div>
+  <script src="assets/components.js"></script>
+</body>
+</html>

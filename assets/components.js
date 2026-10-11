@@ -89,6 +89,9 @@
             if (props.alt !== undefined) {
               placeholder.alt = props.alt
               placeholder.setAttribute('aria-label', props.alt)
+            } else if (propName === 'src' && props.label) {
+              // Fall back to the caption so content images aren't skipped by screen readers
+              placeholder.alt = props.label
             }
           } else if (propName === 'alt') {
             placeholder.alt = value
