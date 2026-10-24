@@ -969,6 +969,11 @@ h4 {
   margin-bottom: 56px;
 }
 
+.side-projects .project-tagline {
+  font-size: 20px;
+  color: var(--gray-dark);
+}
+
 /* Image enhance/lightbox overlay */
 .image-enhance-overlay {
   position: fixed;
